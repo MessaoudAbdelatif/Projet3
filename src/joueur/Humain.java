@@ -8,9 +8,10 @@ public class Humain implements Joueur {
 
     @Override
     public String demanderNbrAleatoire() {
-        System.out.printf("Veuillez Inserez une combinaison secrete: ");
 
+        System.out.printf("Veuillez Inserez une combinaison secrete: ");
         String cs = sc.nextLine();
+
         return cs;
     }
 
@@ -19,12 +20,13 @@ public class Humain implements Joueur {
 
         System.out.println("Inserez votre proposition : ");
         String css = sc.nextLine();
+
         return css;
     }
 
     @Override
     public void donnerUnIndice(String indice) {
-        System.out.println(" Indice = " + indice );
+        System.out.println(" Indice : " + indice);
 
 
     }
