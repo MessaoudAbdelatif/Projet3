@@ -39,7 +39,10 @@ public class RechercheNbr implements Jeu {
 
     @Override
     public boolean isFini() {
+
+
         if (combinaisonSecrete.equals(nombreRecu)) {
+
             return true;
         }
 
@@ -52,6 +55,9 @@ public class RechercheNbr implements Jeu {
 
     }
 
+    public String getCombinaisonSecrete() {
+        return combinaisonSecrete;
+    }
+
+
 }
-
-

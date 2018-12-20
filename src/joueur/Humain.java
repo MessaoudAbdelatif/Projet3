@@ -9,7 +9,7 @@ public class Humain implements Joueur {
     @Override
     public String demanderNbrAleatoire() {
 
-        System.out.printf("Veuillez Inserez une combinaison secrete: ");
+        System.out.println("Veuillez Inserez une combinaison secrete: ");
         String cs = sc.nextLine();
 
         return cs;
