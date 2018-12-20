@@ -2,11 +2,14 @@ package jeu;
 
 import joueur.Joueur;
 
+import java.util.Random;
+
 public class RechercheNbr implements Jeu {
     private Joueur attaquant;
     private Joueur defenseur;
     private String combinaisonSecrete;
     private String nombreRecu;
+    private String v;
 
 
     @Override
@@ -57,6 +60,28 @@ public class RechercheNbr implements Jeu {
 
     public String getCombinaisonSecrete() {
         return combinaisonSecrete;
+    }
+
+
+    public String generateur() {
+        Random generateur = new Random();
+
+        String v = Integer.toString(Math.abs(generateur.nextInt()));
+        v = v.substring(0, 4);
+        return v;
+    }
+
+    public void premiereProposition(){
+        nombreRecu = this.generateur();
+        System.out.println(nombreRecu);
+
+    }
+
+
+    public String generateurDemanderNbrReponse() {
+
+
+        return null;
     }
 
 

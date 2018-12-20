@@ -10,4 +10,7 @@ public interface Jeu {
     void jouerTour();
 
     boolean isFini();
+
+    void premiereProposition();
+
 }

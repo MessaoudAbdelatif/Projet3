@@ -10,14 +10,35 @@ public class Main {
     public static void main(String[] args) {
 
 
-/*
-        Random generateur = new Random();
 
-        String v = Integer.toString(Math.abs(generateur.nextInt()));
-        v = v.substring(0,4);
-        System.out.println(v);
-*/
+/** MODE Défenseur */
+
+        Joueur joueur1 = new IA();
+        Joueur joueur2 = new Humain();
+        Jeu jeu1 = new RechercheNbr();
+        jeu1.setJoueur(joueur1, joueur2);
+        jeu1.premierTour();
+        jeu1.premiereProposition();
+        int r1 = 0; // r1: is loop counter
+        while (!jeu1.isFini()) {
+            r1++;
+            jeu1.jouerTour();
+
+        }
+        System.out.println("Bravo Combinaison secrete trouvée: " + ((RechercheNbr) jeu1).getCombinaisonSecrete()+ "  Le jeu est fini en  " + r1 + " tentative(s)");
+
+
+
+
+
+
+
+
+
 /** MODE Duel */
+
+/*
+
         Joueur joueur1 = new Humain();
         Joueur joueur2 = new Humain();
         Jeu jeu1 = new RechercheNbr();
@@ -68,8 +89,15 @@ public class Main {
             System.out.println("Game Over !! Match nul");
         }
 
+
+*/
+
+
 /** MODE Challenger : */
+
 /*
+
+
         Joueur joueur1 = new Humain();
         Joueur joueur2 = new IA();
         Jeu jeu1 = new RechercheNbr();
@@ -82,7 +110,7 @@ public class Main {
             jeu1.jouerTour();
 
         }
-        System.out.println("Bravo Combinaison secrete trouvée: " + ((RechercheNbr) jeu1).combinaisonSecrete + "  Le jeu est fini en  " + r1 + " tentative(s)");
+        System.out.println("Bravo Combinaison secrete trouvée: " + ((RechercheNbr) jeu1).getCombinaisonSecrete()+ "  Le jeu est fini en  " + r1 + " tentative(s)");
 */
 
     }
