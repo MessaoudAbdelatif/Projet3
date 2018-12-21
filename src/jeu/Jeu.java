@@ -11,6 +11,8 @@ public interface Jeu {
 
     boolean isFini();
 
-    void premiereProposition();
+    void printCombinaison();
+
+
 
 }

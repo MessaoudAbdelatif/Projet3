@@ -63,26 +63,9 @@ public class RechercheNbr implements Jeu {
     }
 
 
-    public String generateur() {
-        Random generateur = new Random();
-
-        String v = Integer.toString(Math.abs(generateur.nextInt()));
-        v = v.substring(0, 4);
-        return v;
-    }
-
-    public void premiereProposition(){
-        nombreRecu = this.generateur();
-        System.out.println(nombreRecu);
+    @Override
+    public void printCombinaison() {
+        System.out.println(combinaisonSecrete);
 
     }
-
-
-    public String generateurDemanderNbrReponse() {
-
-
-        return null;
-    }
-
-
 }

@@ -1,6 +1,8 @@
 package joueur;
 
 import jeu.RechercheNbr;
+
+import java.util.Random;
 import java.util.Scanner;
 
 
@@ -10,7 +12,7 @@ public class IA implements Joueur {
     @Override
     public String demanderNbrAleatoire() {
         System.out.println("Combinaison secrete initié par votre adversaire !");
-        String cs = new RechercheNbr().generateur();
+        String cs = generateur();
         return cs;
     }
 
@@ -26,5 +28,12 @@ public class IA implements Joueur {
     public void donnerUnIndice(String indice) {
         System.out.println(" Indice : " + indice);
 
+    }
+    public String generateur() {
+        Random generateur = new Random();
+
+        String v = Integer.toString(Math.abs(generateur.nextInt()));
+        v = v.substring(0, 4);
+        return v;
     }
 }
