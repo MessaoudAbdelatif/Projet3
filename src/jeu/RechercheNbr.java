@@ -2,8 +2,6 @@ package jeu;
 
 import joueur.Joueur;
 
-import java.util.Random;
-
 public class RechercheNbr implements Jeu {
     private Joueur attaquant;
     private Joueur defenseur;
@@ -56,10 +54,6 @@ public class RechercheNbr implements Jeu {
     public void premierTour() {
         combinaisonSecrete = defenseur.demanderNbrAleatoire();
 
-    }
-
-    public String getCombinaisonSecrete() {
-        return combinaisonSecrete;
     }
 
 
