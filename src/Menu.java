@@ -12,7 +12,6 @@ public class Menu {
     private int selectionChoixJeu = 0;
 
 
-
     private void challangeur(int selectionChoixJeu) {
         switch (selectionChoixJeu) {
             case 1:
@@ -82,19 +81,19 @@ public class Menu {
                 jeu1.premierTour();
 
 
-                int r1 = 0; // r1: loop counter
-                int r2 = 0; // r2: second player loop counter
+                int r1 = 0; // r1: first  player tentatives counter
+                int r2 = 0; // r2: second player tentatives counter
                 boolean alternateurJoueur = false;
 
-                while (!jeu1.isFini() || !jeu2.isFini()) {
-                    if (!jeu1.isFini() && alternateurJoueur == false) {
+                while (!jeu1.isFini() && !jeu2.isFini()) {
+                    if (!jeu1.isFini() && !jeu2.isFini() && alternateurJoueur == false) {
                         r1++;
                         System.out.println("JOUEUR 1");
                         jeu1.jouerTour();
 
 
                         if (jeu1.isFini()) {
-                            System.out.printf("Bravo Combinaison secrete trouvée: ");
+                            System.out.printf("Bravo Joueur 1 Win!! Combinaison secrete trouvée: ");
                             jeu1.printCombinaison();
                             System.out.println("  Le jeu est fini en  " + r1 + " tentative(s)");
                         }
@@ -102,27 +101,20 @@ public class Menu {
                     }
                     alternateurJoueur = true;
 
-                    if (!jeu2.isFini() && alternateurJoueur == true) {
+                    if (!jeu2.isFini() && !jeu1.isFini() && alternateurJoueur == true) {
                         r2++;
                         System.out.println("JOUEUR 2");
                         jeu2.jouerTour();
 
 
                         if (jeu2.isFini()) {
-                            System.out.printf("Bravo Combinaison secrete trouvée: ");
+                            System.out.printf("Bravo Joueur 2 Win!! Combinaison secrete trouvée: ");
                             jeu2.printCombinaison();
                             System.out.println("  Le jeu est fini en  " + r2 + " tentative(s)");
                         }
 
                     }
                     alternateurJoueur = false;
-                }
-                if (r1 > r2) {
-                    System.out.println("Game Over !! le joueur 2 à gagné");
-                } else if (r1 < r2) {
-                    System.out.println("Game Over !! le joueur 1 à gagné");
-                } else {
-                    System.out.println("Game Over !! Match nul");
                 }
                 break;
             case 2:

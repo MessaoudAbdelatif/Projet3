@@ -1,6 +1,5 @@
 package joueur;
 
-import jeu.RechercheNbr;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -29,6 +28,7 @@ public class IA implements Joueur {
         System.out.println(" Indice : " + indice);
 
     }
+
     public String generateur() {
         Random generateur = new Random();
 
