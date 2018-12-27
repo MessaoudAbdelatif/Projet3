@@ -2,11 +2,11 @@ package joueur;
 
 
 import java.util.Random;
-import java.util.Scanner;
 
 
 public class IA implements Joueur {
-    Scanner sc = new Scanner(System.in);
+
+    private String dernierReponse = "5555";
 
     @Override
     public String demanderNbrAleatoire() {
@@ -20,13 +20,29 @@ public class IA implements Joueur {
 
         System.out.println("Inserez votre proposition : ");
 
+
         return null;
     }
 
     @Override
     public void donnerUnIndice(String indice) {
         System.out.println(" Indice : " + indice);
+        char tab[] = indice.toCharArray();
+        char resultat[] = new char[tab.length];
+        for (int i = 0; i < tab.length; i++) {
+            if (tab[i] == '+') {
+                resultat[i] = (char) (dernierReponse.charAt(i) + 1);
+            }
+            if (tab[i] == '-') {
+                resultat[i] = (char) (dernierReponse.charAt(i) - 1);
 
+            }
+            if ( tab [i] == '+' ) {
+                resultat[i] = (char) (dernierReponse.charAt(i) + 1);
+            }
+
+
+        }
     }
 
     public String generateur() {

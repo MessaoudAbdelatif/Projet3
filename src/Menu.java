@@ -12,7 +12,7 @@ public class Menu {
     private int selectionChoixJeu = 0;
 
 
-    private void challangeur(int selectionChoixJeu) {
+    private void challenger(int selectionChoixJeu) {
         switch (selectionChoixJeu) {
             case 1:
 
@@ -54,7 +54,7 @@ public class Menu {
                     jeu1.jouerTour();
 
                 }
-                System.out.printf("Bravo Combinaison secrete trouvée: ");
+                System.out.print("Bravo Combinaison secrete trouvée: ");
                 jeu1.printCombinaison();
                 System.out.println("  Le jeu est fini en  " + r1 + " tentative(s)");
                 break;
@@ -124,11 +124,11 @@ public class Menu {
     }
 
     private void choixDuMode(int selectionChoixJeu) {
-        System.out.println(" 1/ Challangeur. \n 2/ Defenseur. \n 3/ Duel. \n Veuillez Séléctionner un Mode de Jeu: ");
+        System.out.println(" 1/ challenger. \n 2/ Defenseur. \n 3/ Duel. \n Veuillez Séléctionner un Mode de Jeu: ");
         int selectionChoixMode = sc.nextInt();
         switch (selectionChoixMode) {
             case 1:
-                this.challangeur(selectionChoixJeu);
+                this.challenger(selectionChoixJeu);
                 break;
             case 2:
                 this.defenseur(selectionChoixJeu);
