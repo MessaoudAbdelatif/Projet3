@@ -6,7 +6,7 @@ public class RechercheNbr implements Jeu {
     private Joueur attaquant;
     private Joueur defenseur;
     private String combinaisonSecrete;
-    private String nombreRecu;
+    public String nombreRecu;
     private String v;
 
 
@@ -29,9 +29,9 @@ public class RechercheNbr implements Jeu {
         for (int i = 0; i < nombreRecu.length(); i++) {
             if (nombreRecu.charAt(i) == combinaisonSecrete.charAt(i))
                 tab[i] = '=';
-            if (nombreRecu.charAt(i) < combinaisonSecrete.charAt(i))
-                tab[i] = '-';
             if (nombreRecu.charAt(i) > combinaisonSecrete.charAt(i))
+                tab[i] = '-';
+            if (nombreRecu.charAt(i) < combinaisonSecrete.charAt(i))
                 tab[i] = '+';
         }
         attaquant.donnerUnIndice(new String(tab));

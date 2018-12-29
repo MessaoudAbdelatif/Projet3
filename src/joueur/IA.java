@@ -8,6 +8,7 @@ public class IA implements Joueur {
 
     private String dernierReponse = "5555";
 
+
     @Override
     public String demanderNbrAleatoire() {
         System.out.println("Combinaison secrete initié par votre adversaire !");
@@ -18,31 +19,31 @@ public class IA implements Joueur {
     @Override
     public String demanderNbrReponse() {
 
-        System.out.println("Inserez votre proposition : ");
+        System.out.println("Inserez votre proposition : " + dernierReponse);
 
-
-        return null;
+        return dernierReponse;
     }
 
     @Override
     public void donnerUnIndice(String indice) {
         System.out.println(" Indice : " + indice);
-        char tab[] = indice.toCharArray();
-        char resultat[] = new char[tab.length];
-        for (int i = 0; i < tab.length; i++) {
-            if (tab[i] == '+') {
-                resultat[i] = (char) (dernierReponse.charAt(i) + 1);
-            }
-            if (tab[i] == '-') {
-                resultat[i] = (char) (dernierReponse.charAt(i) - 1);
+        char tabIndice[] = indice.toCharArray();
+        char resultat[] = new char[tabIndice.length];
+        for (int i = 0; i < tabIndice.length; i++) {
+            if (tabIndice[i] == '+') {
+                resultat[i] = (char) (Integer.valueOf(this.dernierReponse.charAt(i)) + 1);
+            } else if (tabIndice[i] == '-') {
+                resultat[i] = (char) (Integer.valueOf(this.dernierReponse.charAt(i)) - 1);
 
-            }
-            if ( tab [i] == '+' ) {
-                resultat[i] = (char) (dernierReponse.charAt(i) + 1);
+            } else if (tabIndice[i] == '=') {
+                resultat[i] = (char) (Integer.valueOf(this.dernierReponse.charAt(i)) + 0);
             }
 
 
         }
+        dernierReponse = String.valueOf(resultat);
+
+
     }
 
     public String generateur() {
