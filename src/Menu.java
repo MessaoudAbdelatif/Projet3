@@ -10,28 +10,18 @@ public class Menu {
     Scanner sc = new Scanner(System.in);
 
     private int selectionChoixJeu = 0;
+    private Joueur joueur1;
+    private Joueur joueur2;
 
 
     private void challenger(int selectionChoixJeu) {
+        joueur1 = new Humain();
+        joueur2 = new IA();
+
         switch (selectionChoixJeu) {
+
             case 1:
-
-
-                Joueur joueur1 = new Humain();
-                Joueur joueur2 = new IA();
-                Jeu jeu1 = new RechercheNbr();
-
-                jeu1.setJoueur(joueur1, joueur2);
-                jeu1.premierTour();
-                int r1 = 0; // r1: is loop counter
-                while (!jeu1.isFini()) {
-                    r1++;
-                    jeu1.jouerTour();
-
-                }
-                System.out.printf("Bravo Combinaison secrete trouvée: ");
-                jeu1.printCombinaison();
-                System.out.println("  Le jeu est fini en  " + r1 + " tentative(s)");
+                rechercheNbrModeChallenger();
                 break;
             case 2:
                 break;
@@ -40,23 +30,12 @@ public class Menu {
 
 
     private void defenseur(int selectionChoixJeu) {
+        joueur1 = new IA();
+        joueur2 = new Humain();
+
         switch (selectionChoixJeu) {
             case 1:
-
-                Joueur joueur1 = new IA();
-                Joueur joueur2 = new Humain();
-                Jeu jeu1 = new RechercheNbr();
-                jeu1.setJoueur(joueur1, joueur2);
-                jeu1.premierTour();
-                int r1 = 0; // r1: is loop counter
-                while (!jeu1.isFini()) {
-                    r1++;
-                    jeu1.jouerTour();
-
-                }
-                System.out.print("Bravo Combinaison secrete trouvée: ");
-                jeu1.printCombinaison();
-                System.out.println("  Le jeu est fini en  " + r1 + " tentative(s)");
+                rechercheNbrModeDefenseur();
                 break;
             case 2:
                 break;
@@ -64,63 +43,117 @@ public class Menu {
     }
 
     private void duel(int selectionChoixJeu) {
+        joueur1 = new Humain();
+        joueur2 = new Humain();
 
         switch (selectionChoixJeu) {
             case 1:
-
-                Joueur joueur1 = new Humain();
-                Joueur joueur2 = new Humain();
-                Jeu jeu1 = new RechercheNbr();
-                Jeu jeu2 = new RechercheNbr();
-
-                jeu1.setJoueur(joueur1, joueur2);
-                jeu2.setJoueur(joueur1, joueur2);
-                System.out.println("JOUEUR 1");
-                jeu2.premierTour();
-                System.out.println("JOUEUR 2");
-                jeu1.premierTour();
-
-
-                int r1 = 0; // r1: first  player tentatives counter
-                int r2 = 0; // r2: second player tentatives counter
-                boolean alternateurJoueur = false;
-
-                while (!jeu1.isFini() && !jeu2.isFini()) {
-                    if (!jeu1.isFini() && !jeu2.isFini() && alternateurJoueur == false) {
-                        r1++;
-                        System.out.println("JOUEUR 1");
-                        jeu1.jouerTour();
-
-
-                        if (jeu1.isFini()) {
-                            System.out.printf("Bravo Joueur 1 Win!! Combinaison secrete trouvée: ");
-                            jeu1.printCombinaison();
-                            System.out.println("  Le jeu est fini en  " + r1 + " tentative(s)");
-                        }
-
-                    }
-                    alternateurJoueur = true;
-
-                    if (!jeu2.isFini() && !jeu1.isFini() && alternateurJoueur == true) {
-                        r2++;
-                        System.out.println("JOUEUR 2");
-                        jeu2.jouerTour();
-
-
-                        if (jeu2.isFini()) {
-                            System.out.printf("Bravo Joueur 2 Win!! Combinaison secrete trouvée: ");
-                            jeu2.printCombinaison();
-                            System.out.println("  Le jeu est fini en  " + r2 + " tentative(s)");
-                        }
-
-                    }
-                    alternateurJoueur = false;
-                }
+                rechercheNbrModeDuel();
                 break;
             case 2:
                 break;
         }
+    }
 
+
+    private void rechercheNbrModeChallenger() {
+        Jeu jeu1 = new RechercheNbr();
+        jeu1.setJoueur(joueur1, joueur2);
+        jeu1.premierTour();
+
+        int compteurTentative = 0; // compteurTentative: is loop counter
+        while (!jeu1.isFini()) {
+            compteurTentative++;
+            jeu1.jouerTour();
+
+        }
+        System.out.print("Bravo Combinaison secrete trouvée: ");
+        jeu1.printCombinaison();
+
+        if (compteurTentative > 1) {
+            System.out.println("  Le jeu est fini en  " + compteurTentative + " tentatives");
+        } else {
+            System.out.println("  Le jeu est fini en  " + compteurTentative + " tentative");
+        }
+
+    }
+
+    private void rechercheNbrModeDefenseur() {
+        Jeu jeu1 = new RechercheNbr();
+        jeu1.setJoueur(joueur1, joueur2);
+        jeu1.premierTour();
+        int compteurTentative = 0; // compteurTentative: is loop counter
+        while (!jeu1.isFini()) {
+            compteurTentative++;
+            jeu1.jouerTour();
+
+        }
+        System.out.print("Bravo Combinaison secrete trouvée: ");
+        jeu1.printCombinaison();
+        if (compteurTentative > 1) {
+            System.out.println("  Le jeu est fini en  " + compteurTentative + " tentatives");
+        } else {
+            System.out.println("  Le jeu est fini en  " + compteurTentative + " tentative");
+        }
+    }
+
+    private void rechercheNbrModeDuel() {
+
+        Jeu jeu1 = new RechercheNbr();
+        Jeu jeu2 = new RechercheNbr();
+
+        jeu1.setJoueur(joueur1, joueur2);
+        jeu2.setJoueur(joueur1, joueur2);
+        System.out.println("JOUEUR 1");
+        jeu2.premierTour();
+        System.out.println("JOUEUR 2");
+        jeu1.premierTour();
+
+
+        int compteurTentativeJoueur1 = 0; // compteurTentativeJoueur1: first  player tentatives counter
+        int compteurTentativeJoueur2 = 0; // compteurTentativeJoueur2: second player tentatives counter
+        boolean alternateurJoueur = false;
+
+        while (!jeu1.isFini() && !jeu2.isFini()) {
+            if (!jeu1.isFini() && !jeu2.isFini() && alternateurJoueur == false) {
+                compteurTentativeJoueur1++;
+                System.out.println("JOUEUR 1");
+                jeu1.jouerTour();
+
+
+                if (jeu1.isFini()) {
+                    System.out.print("Bravo Joueur 1 Win!! Combinaison secrete trouvée: ");
+                    jeu1.printCombinaison();
+                    if (compteurTentativeJoueur1 > 1) {
+                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur1 + " tentatives");
+                    } else {
+                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur1 + " tentative");
+                    }
+                }
+
+            }
+            alternateurJoueur = true;
+
+            if (!jeu2.isFini() && !jeu1.isFini() && alternateurJoueur == true) {
+                compteurTentativeJoueur2++;
+                System.out.println("JOUEUR 2");
+                jeu2.jouerTour();
+
+
+                if (jeu2.isFini()) {
+                    System.out.print("Bravo Joueur 2 Win!! Combinaison secrete trouvée: ");
+                    jeu2.printCombinaison();
+
+                    if (compteurTentativeJoueur2 > 1) {
+                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur2 + " tentatives");
+                    } else {
+                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur2 + " tentative");
+                    }
+                }
+
+            }
+            alternateurJoueur = false;
+        }
     }
 
     private void choixDuMode(int selectionChoixJeu) {

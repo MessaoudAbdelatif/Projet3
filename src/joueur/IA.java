@@ -43,7 +43,6 @@ public class IA implements Joueur {
         }
         dernierReponse = String.valueOf(resultat);
 
-
     }
 
     public String generateur() {
