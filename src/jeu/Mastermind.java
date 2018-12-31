@@ -2,13 +2,14 @@ package jeu;
 
 import joueur.Joueur;
 
-public class RechercheNbr implements Jeu {
+public class Mastermind implements Jeu {
     private Joueur attaquant;
     private Joueur defenseur;
     private String combinaisonSecrete;
     private String nombreRecu;
-
-
+    private int nbPresent = 0;
+    private int nbBienPlace = 0;
+    private String indice=("");
 
     @Override
     public void setJoueur(Joueur attaquant, Joueur defenseur) {
@@ -19,22 +20,36 @@ public class RechercheNbr implements Jeu {
     }
 
     @Override
+    public void premierTour() {
+        combinaisonSecrete = defenseur.demanderNbrAleatoire();
+
+    }
+
+    @Override
     public void jouerTour() {
 
 
         nombreRecu = attaquant.demanderNbrReponse();
+        nbPresent =0;
+        nbBienPlace =0;
 
 
-        char[] tab = new char[nombreRecu.length()];
         for (int i = 0; i < nombreRecu.length(); i++) {
             if (nombreRecu.charAt(i) == combinaisonSecrete.charAt(i))
-                tab[i] = '=';
-            if (nombreRecu.charAt(i) > combinaisonSecrete.charAt(i))
-                tab[i] = '-';
-            if (nombreRecu.charAt(i) < combinaisonSecrete.charAt(i))
-                tab[i] = '+';
+                nbBienPlace++;
+            else {
+                for (int j = 0; j < combinaisonSecrete.length(); j++) {
+                    if (nombreRecu.charAt(i) == combinaisonSecrete.charAt(j)) {
+                        nbPresent++;
+
+                    }
+                }
+            }
         }
-        attaquant.donnerUnIndice(new String(tab));
+        indice = (nbBienPlace + " Bien Placé" + " " + nbPresent +" Présent");
+
+        attaquant.donnerUnIndice(indice);
+
     }
 
 
@@ -47,15 +62,9 @@ public class RechercheNbr implements Jeu {
             return true;
         }
 
+
         return false;
     }
-
-
-    public void premierTour() {
-        combinaisonSecrete = defenseur.demanderNbrAleatoire();
-
-    }
-
 
     @Override
     public void printCombinaison() {

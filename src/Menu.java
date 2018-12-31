@@ -1,4 +1,5 @@
 import jeu.Jeu;
+import jeu.Mastermind;
 import jeu.RechercheNbr;
 import joueur.Humain;
 import joueur.IA;
@@ -51,7 +52,66 @@ public class Menu {
                 rechercheNbrModeDuel();
                 break;
             case 2:
+                mastermindDuel();
                 break;
+        }
+    }
+
+    private void mastermindDuel() {
+        Jeu jeu1 = new Mastermind();
+        Jeu jeu2 = new Mastermind();
+
+        jeu1.setJoueur(joueur1, joueur2);
+        jeu2.setJoueur(joueur1, joueur2);
+        System.out.println("JOUEUR 1");
+        jeu2.premierTour();
+        System.out.println("JOUEUR 2");
+        jeu1.premierTour();
+
+
+        int compteurTentativeJoueur1 = 0; // compteurTentativeJoueur1: first  player tentatives counter
+        int compteurTentativeJoueur2 = 0; // compteurTentativeJoueur2: second player tentatives counter
+        boolean alternateurJoueur = false;
+
+        while (!jeu1.isFini() && !jeu2.isFini()) {
+            if (!jeu1.isFini() && !jeu2.isFini() && alternateurJoueur == false) {
+                compteurTentativeJoueur1++;
+                System.out.println("JOUEUR 1");
+                jeu1.jouerTour();
+
+
+                if (jeu1.isFini()) {
+                    System.out.print("Bravo Joueur 1 Win!! Combinaison secrete trouvée: ");
+                    jeu1.printCombinaison();
+                    if (compteurTentativeJoueur1 > 1) {
+                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur1 + " tentatives");
+                    } else {
+                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur1 + " tentative");
+                    }
+                }
+
+            }
+            alternateurJoueur = true;
+
+            if (!jeu2.isFini() && !jeu1.isFini() && alternateurJoueur == true) {
+                compteurTentativeJoueur2++;
+                System.out.println("JOUEUR 2");
+                jeu2.jouerTour();
+
+
+                if (jeu2.isFini()) {
+                    System.out.print("Bravo Joueur 2 Win!! Combinaison secrete trouvée: ");
+                    jeu2.printCombinaison();
+
+                    if (compteurTentativeJoueur2 > 1) {
+                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur2 + " tentatives");
+                    } else {
+                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur2 + " tentative");
+                    }
+                }
+
+            }
+            alternateurJoueur = false;
         }
     }
 
@@ -183,8 +243,8 @@ public class Menu {
             case 1:
                 this.choixDuMode(selectionChoixJeu);
                 break;
-//          case 2:
-//                this.choixDuMode(MasterMind);
+            case 2:
+                this.choixDuMode(selectionChoixJeu);
             default:
                 break;
         }

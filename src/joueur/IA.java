@@ -1,8 +1,6 @@
 package joueur;
 
-
 import java.util.Random;
-
 
 public class IA implements Joueur {
 
