@@ -15,6 +15,7 @@ public class Menu {
     private Joueur joueur2;
 
 
+
     private void challenger(int selectionChoixJeu) {
         joueur1 = new Humain();
         joueur2 = new IA();
@@ -25,8 +26,13 @@ public class Menu {
                 rechercheNbrModeChallenger();
                 break;
             case 2:
+                mastermindChallenger();
                 break;
         }
+    }
+
+    private void mastermindChallenger() {
+
     }
 
 

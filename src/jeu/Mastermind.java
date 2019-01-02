@@ -9,7 +9,7 @@ public class Mastermind implements Jeu {
     private String nombreRecu;
     private int nbPresent = 0;
     private int nbBienPlace = 0;
-    private String indice=("");
+    private String indice = ("");
 
     @Override
     public void setJoueur(Joueur attaquant, Joueur defenseur) {
@@ -30,8 +30,8 @@ public class Mastermind implements Jeu {
 
 
         nombreRecu = attaquant.demanderNbrReponse();
-        nbPresent =0;
-        nbBienPlace =0;
+        nbPresent = 0;
+        nbBienPlace = 0;
 
 
         for (int i = 0; i < nombreRecu.length(); i++) {
@@ -46,7 +46,7 @@ public class Mastermind implements Jeu {
                 }
             }
         }
-        indice = (nbBienPlace + " Bien Placé" + " " + nbPresent +" Présent");
+        indice = (nbBienPlace + " Bien Placé" + " " + nbPresent + " Présent");
 
         attaquant.donnerUnIndice(indice);
 
