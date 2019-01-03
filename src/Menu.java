@@ -9,121 +9,37 @@ import java.util.Scanner;
 
 public class Menu {
     Scanner sc = new Scanner(System.in);
-
-    private int selectionChoixJeu = 0;
+    private String selectionChoixJeu = "";
+    private Jeu choixJeu;
     private Joueur joueur1;
     private Joueur joueur2;
 
 
-
-    private void challenger(int selectionChoixJeu) {
+    private void challenger(String selectionChoixJeu) {
         joueur1 = new Humain();
         joueur2 = new IA();
-
-        switch (selectionChoixJeu) {
-
-            case 1:
-                rechercheNbrModeChallenger();
-                break;
-            case 2:
-                mastermindChallenger();
-                break;
-        }
-    }
-
-    private void mastermindChallenger() {
+        rechercheNbrModeChallenger();
 
     }
 
 
-    private void defenseur(int selectionChoixJeu) {
+    private void defenseur(String selectionChoixJeu) {
         joueur1 = new IA();
         joueur2 = new Humain();
+        rechercheNbrModeDefenseur();
 
-        switch (selectionChoixJeu) {
-            case 1:
-                rechercheNbrModeDefenseur();
-                break;
-            case 2:
-                break;
-        }
     }
 
-    private void duel(int selectionChoixJeu) {
+    private void duel(String selectionChoixJeu) {
         joueur1 = new Humain();
         joueur2 = new Humain();
+        rechercheNbrModeDuel();
 
-        switch (selectionChoixJeu) {
-            case 1:
-                rechercheNbrModeDuel();
-                break;
-            case 2:
-                mastermindDuel();
-                break;
-        }
-    }
-
-    private void mastermindDuel() {
-        Jeu jeu1 = new Mastermind();
-        Jeu jeu2 = new Mastermind();
-
-        jeu1.setJoueur(joueur1, joueur2);
-        jeu2.setJoueur(joueur1, joueur2);
-        System.out.println("JOUEUR 1");
-        jeu2.premierTour();
-        System.out.println("JOUEUR 2");
-        jeu1.premierTour();
-
-
-        int compteurTentativeJoueur1 = 0; // compteurTentativeJoueur1: first  player tentatives counter
-        int compteurTentativeJoueur2 = 0; // compteurTentativeJoueur2: second player tentatives counter
-        boolean alternateurJoueur = false;
-
-        while (!jeu1.isFini() && !jeu2.isFini()) {
-            if (!jeu1.isFini() && !jeu2.isFini() && alternateurJoueur == false) {
-                compteurTentativeJoueur1++;
-                System.out.println("JOUEUR 1");
-                jeu1.jouerTour();
-
-
-                if (jeu1.isFini()) {
-                    System.out.print("Bravo Joueur 1 Win!! Combinaison secrete trouvée: ");
-                    jeu1.printCombinaison();
-                    if (compteurTentativeJoueur1 > 1) {
-                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur1 + " tentatives");
-                    } else {
-                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur1 + " tentative");
-                    }
-                }
-
-            }
-            alternateurJoueur = true;
-
-            if (!jeu2.isFini() && !jeu1.isFini() && alternateurJoueur == true) {
-                compteurTentativeJoueur2++;
-                System.out.println("JOUEUR 2");
-                jeu2.jouerTour();
-
-
-                if (jeu2.isFini()) {
-                    System.out.print("Bravo Joueur 2 Win!! Combinaison secrete trouvée: ");
-                    jeu2.printCombinaison();
-
-                    if (compteurTentativeJoueur2 > 1) {
-                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur2 + " tentatives");
-                    } else {
-                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur2 + " tentative");
-                    }
-                }
-
-            }
-            alternateurJoueur = false;
-        }
     }
 
 
     private void rechercheNbrModeChallenger() {
-        Jeu jeu1 = new RechercheNbr();
+        Jeu jeu1 = choixJeu;
         jeu1.setJoueur(joueur1, joueur2);
         jeu1.premierTour();
 
@@ -145,7 +61,7 @@ public class Menu {
     }
 
     private void rechercheNbrModeDefenseur() {
-        Jeu jeu1 = new RechercheNbr();
+        Jeu jeu1 = choixJeu;
         jeu1.setJoueur(joueur1, joueur2);
         jeu1.premierTour();
         int compteurTentative = 0; // compteurTentative: is loop counter
@@ -165,8 +81,8 @@ public class Menu {
 
     private void rechercheNbrModeDuel() {
 
-        Jeu jeu1 = new RechercheNbr();
-        Jeu jeu2 = new RechercheNbr();
+        Jeu jeu1 = choixJeu;
+        Jeu jeu2 = choixJeu;
 
         jeu1.setJoueur(joueur1, joueur2);
         jeu2.setJoueur(joueur1, joueur2);
@@ -222,8 +138,8 @@ public class Menu {
         }
     }
 
-    private void choixDuMode(int selectionChoixJeu) {
-        System.out.println(" 1/ challenger. \n 2/ Defenseur. \n 3/ Duel. \n Veuillez Séléctionner un Mode de Jeu: ");
+    private void choixDuMode(String selectionChoixJeu) {
+        System.out.println(" 1/ challenger. \n 2/ Defenseur. \n 3/ Duel. \n Veuillez Inserez le numéro de mode de jeu désiré: ");
         int selectionChoixMode = sc.nextInt();
         switch (selectionChoixMode) {
             case 1:
@@ -237,6 +153,8 @@ public class Menu {
                 break;
 
             default:
+                System.out.println("De Nouveau, Veuillez inserez un numéro de mode valide!");
+                choixDuMode(this.selectionChoixJeu);
                 break;
         }
     }
@@ -244,15 +162,18 @@ public class Menu {
     public void choixDuJeu() {
 
         System.out.println("Bienvenue au Projet3 OpenClassRoom!  \n 1/ Recherche Combinaison Secrete +/-. \n 2/ MasterMind. \n Veuillez Selectionner un Jeu: ");
-        this.selectionChoixJeu = sc.nextInt();
-        switch (selectionChoixJeu) {
-            case 1:
-                this.choixDuMode(selectionChoixJeu);
-                break;
-            case 2:
-                this.choixDuMode(selectionChoixJeu);
-            default:
-                break;
+        this.selectionChoixJeu = sc.nextLine();
+        if (selectionChoixJeu.equals("1") || selectionChoixJeu.equals("Recherche Combinaison Secrete +/-") || selectionChoixJeu.equals("Recherche Combinaison Secrete")) {
+            choixJeu = new RechercheNbr();
+            selectionChoixJeu = "1";
+            choixDuMode(this.selectionChoixJeu);
+        } else if (selectionChoixJeu.equals("2") || selectionChoixJeu.equals("MasterMind")) {
+            choixJeu = new Mastermind();
+            selectionChoixJeu = "2";
+            choixDuMode(this.selectionChoixJeu);
+        } else {
+            System.out.println("Je ne trouve pas le Jeu voulu!! \n De nouveau veuillez selectionner le numéro associer à votre Jeu.");
+            this.choixDuJeu();
         }
 
     }
