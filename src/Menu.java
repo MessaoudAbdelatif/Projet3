@@ -15,30 +15,40 @@ public class Menu {
     private Joueur joueur2;
 
 
-    private void challenger(String selectionChoixJeu) {
+    private void challenger() {
         joueur1 = new Humain();
-        joueur2 = new IA();
-        rechercheNbrModeChallenger();
+//        switch (selectionChoixJeu) {
+//            case "1":
+                joueur2 = new IA();
+//            case "2":
+//                joueur2 = new IAmastermind;
+//        }
+        jeuModeChallenger();
 
     }
 
 
-    private void defenseur(String selectionChoixJeu) {
-        joueur1 = new IA();
+    private void defenseur() {
+        switch (selectionChoixJeu) {
+            case "1":
+                joueur1 = new IA();
+//            case "2":
+//                joueur1 = new IAmastermind;
+        }
         joueur2 = new Humain();
-        rechercheNbrModeDefenseur();
+        jeuModeDefenseur();
 
     }
 
-    private void duel(String selectionChoixJeu) {
+    private void duel() {
         joueur1 = new Humain();
         joueur2 = new Humain();
-        rechercheNbrModeDuel();
+        jeuModeDuel();
 
     }
 
 
-    private void rechercheNbrModeChallenger() {
+    private void jeuModeChallenger() {
         Jeu jeu1 = choixJeu;
         jeu1.setJoueur(joueur1, joueur2);
         jeu1.premierTour();
@@ -60,7 +70,7 @@ public class Menu {
 
     }
 
-    private void rechercheNbrModeDefenseur() {
+    private void jeuModeDefenseur() {
         Jeu jeu1 = choixJeu;
         jeu1.setJoueur(joueur1, joueur2);
         jeu1.premierTour();
@@ -79,7 +89,7 @@ public class Menu {
         }
     }
 
-    private void rechercheNbrModeDuel() {
+    private void jeuModeDuel() {
 
         Jeu jeu1 = choixJeu;
         Jeu jeu2 = choixJeu;
@@ -143,13 +153,13 @@ public class Menu {
         int selectionChoixMode = sc.nextInt();
         switch (selectionChoixMode) {
             case 1:
-                this.challenger(selectionChoixJeu);
+                this.challenger();
                 break;
             case 2:
-                this.defenseur(selectionChoixJeu);
+                this.defenseur();
                 break;
             case 3:
-                this.duel(selectionChoixJeu);
+                this.duel();
                 break;
 
             default:
