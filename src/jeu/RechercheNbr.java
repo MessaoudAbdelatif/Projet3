@@ -22,16 +22,16 @@ public class RechercheNbr implements Jeu {
     public void jouerTour() {
 
 
-        nombreRecu = attaquant.demanderNbrReponse();
+        this.nombreRecu = attaquant.demanderNbrReponse();
 
 
         char[] tab = new char[nombreRecu.length()];
         for (int i = 0; i < nombreRecu.length(); i++) {
-            if (nombreRecu.charAt(i) == combinaisonSecrete.charAt(i))
+            if (this.nombreRecu.charAt(i) == this.combinaisonSecrete.charAt(i))
                 tab[i] = '=';
-            if (nombreRecu.charAt(i) > combinaisonSecrete.charAt(i))
+            if (this.nombreRecu.charAt(i) > this.combinaisonSecrete.charAt(i))
                 tab[i] = '-';
-            if (nombreRecu.charAt(i) < combinaisonSecrete.charAt(i))
+            if (this.nombreRecu.charAt(i) < this.combinaisonSecrete.charAt(i))
                 tab[i] = '+';
         }
         attaquant.donnerUnIndice(new String(tab));
@@ -42,7 +42,7 @@ public class RechercheNbr implements Jeu {
     public boolean isFini() {
 
 
-        if (combinaisonSecrete.equals(nombreRecu)) {
+        if (this.combinaisonSecrete.equals(nombreRecu)) {
 
             return true;
         }
@@ -52,7 +52,8 @@ public class RechercheNbr implements Jeu {
 
 
     public void premierTour() {
-        combinaisonSecrete = defenseur.demanderNbrAleatoire();
+
+        this.combinaisonSecrete = defenseur.demanderNbrAleatoire();
 
     }
 
