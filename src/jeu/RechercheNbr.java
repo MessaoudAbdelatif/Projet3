@@ -9,7 +9,6 @@ public class RechercheNbr implements Jeu {
     private String nombreRecu;
 
 
-
     @Override
     public void setJoueur(Joueur attaquant, Joueur defenseur) {
         this.attaquant = attaquant;
@@ -22,7 +21,7 @@ public class RechercheNbr implements Jeu {
     public void jouerTour() {
 
 
-        this.nombreRecu = attaquant.demanderNbrReponse();
+        nombreRecu = attaquant.demanderNbrReponse();
 
 
         char[] tab = new char[nombreRecu.length()];
@@ -53,7 +52,7 @@ public class RechercheNbr implements Jeu {
 
     public void premierTour() {
 
-        this.combinaisonSecrete = defenseur.demanderNbrAleatoire();
+        combinaisonSecrete = defenseur.demanderNbrAleatoire();
 
     }
 

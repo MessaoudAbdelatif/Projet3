@@ -19,8 +19,10 @@ public class Menu {
         switch (selectionChoixJeu) {
             case "1":
                 joueur2 = new IARechercheNbr();
+                break;
             case "2":
                 joueur2 = new IAMastermind();
+                break;
         }
 
         Jeu jeu1 = choixJeu;
@@ -49,8 +51,10 @@ public class Menu {
         switch (selectionChoixJeu) {
             case "1":
                 joueur1 = new IARechercheNbr();
+                break;
             case "2":
                 joueur1 = new IAMastermind();
+                break;
         }
         joueur2 = new Humain();
 

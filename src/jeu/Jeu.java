@@ -14,5 +14,4 @@ public interface Jeu {
     void printCombinaison();
 
 
-
 }
