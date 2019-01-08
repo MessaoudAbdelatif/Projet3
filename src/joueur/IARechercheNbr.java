@@ -22,7 +22,7 @@ public class IARechercheNbr extends IA {
         return dernierReponse;
     }
 
-   /*@Override
+  /* @Override
     public void donnerUnIndice(String indice) {
 
         System.out.println(" Indice : " + indice);
@@ -53,32 +53,37 @@ public class IARechercheNbr extends IA {
         return v;
     }
 
-@Override
+    @Override
     public void donnerUnIndice(String indice) {
 
         System.out.println(" Indice : " + indice);
-        char tabIndice[] = indice.toCharArray();
-        char resultat[] = new char[tabIndice.length];
-
-        int borneMax[] = {9};
-        int borneMin[] = {0};
+        char[] tabIndice = indice.toCharArray();
+        char[] resultat = new char[dernierReponse.length()];
+        int[] borneMax = new int[dernierReponse.length()];
+        int[] borneMin = new int[dernierReponse.length()];
 
 
         for (int i = 0; i < tabIndice.length; i++) {
+
+/** TODO Probleme  boucle ou casting !!**/
+
+            borneMax[i] = 9;
+            borneMin[i] = 0;
+
             if (tabIndice[i] == '+') {
-                resultat[i] = (char) (Integer.valueOf(Integer.valueOf(this.dernierReponse.charAt(i)) + (borneMax[0])) / 2);
-                borneMax[0] = borneMax[0] - 1;
+                borneMin[i] = Integer.valueOf(this.dernierReponse.charAt(i)) + 1;
+                resultat[i] = (char) (Integer.valueOf(borneMax[i] + borneMin[i] / 2).intValue());
+
             } else if (tabIndice[i] == '-') {
-                resultat[i] = (char) (Integer.valueOf(Integer.valueOf(this.dernierReponse.charAt(i)) - (borneMin[0])) / 2);
+                borneMax[i] = Integer.valueOf(this.dernierReponse.charAt(i)) - 1;
+                resultat[i] = (char) (Integer.valueOf(borneMax[i] + borneMin[i] / 2).intValue());
 
             } else if (tabIndice[i] == '=') {
                 resultat[i] = (char) (Integer.valueOf(this.dernierReponse.charAt(i)) + 0);
             }
 
-
         }
         dernierReponse = String.valueOf(resultat);
-
 
     }
 
