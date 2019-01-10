@@ -6,6 +6,9 @@ import java.util.Random;
 public class IARechercheNbr extends IA {
 
     private String dernierReponse = "5555";
+    char[] resultat = new char[dernierReponse.length()];
+    int[] borneMax = new int[dernierReponse.length()];
+    int[] borneMin = new int[dernierReponse.length()];
 
 
     public String demanderNbrAleatoire() {
@@ -58,33 +61,40 @@ public class IARechercheNbr extends IA {
 
         System.out.println(" Indice : " + indice);
         char[] tabIndice = indice.toCharArray();
-        char[] resultat = new char[dernierReponse.length()];
-        int[] borneMax = new int[dernierReponse.length()];
-        int[] borneMin = new int[dernierReponse.length()];
 
 
-        for (int i = 0; i < tabIndice.length; i++) {
-
-/** TODO Probleme  boucle ou casting !!**/
-
-            borneMax[i] = 9;
-            borneMin[i] = 0;
-
-            if (tabIndice[i] == '+') {
-                borneMin[i] = Integer.valueOf(this.dernierReponse.charAt(i)) + 1;
-                resultat[i] = (char) (Integer.valueOf(borneMax[i] + borneMin[i] / 2).intValue());
-
-            } else if (tabIndice[i] == '-') {
-                borneMax[i] = Integer.valueOf(this.dernierReponse.charAt(i)) - 1;
-                resultat[i] = (char) (Integer.valueOf(borneMax[i] + borneMin[i] / 2).intValue());
-
-            } else if (tabIndice[i] == '=') {
-                resultat[i] = (char) (Integer.valueOf(this.dernierReponse.charAt(i)) + 0);
+        for (int i = 0; i < resultat.length; i++) {
+            if (dernierReponse == "5555") {
+                borneMin[i] = 0;
+                borneMax[i] = 9;
             }
 
+
+                switch (tabIndice[i]) {
+                    case '=':
+                        resultat[i] = dernierReponse.charAt(i);
+
+                        break;
+                    case '-':
+                        borneMax[i] = Character.getNumericValue(dernierReponse.charAt(i));
+                        resultat[i] = Character.forDigit((borneMax[i] + borneMin[i]) / 2, 10);
+
+                        break;
+                    case '+':
+                        borneMin[i] = Character.getNumericValue(dernierReponse.charAt(i));
+                        if ((borneMax[i] + borneMin[i]) % 2 == 0) {
+                            resultat[i] = Character.forDigit((borneMax[i] + borneMin[i]) / 2, 10);
+
+                        } else {
+                            resultat[i] = Character.forDigit(((borneMax[i] + borneMin[i]) / 2) + 1, 10);
+
+                        }
+
+                        break;
+                }
+
+            }
+            dernierReponse = String.valueOf(resultat);
+
         }
-        dernierReponse = String.valueOf(resultat);
-
     }
-
-}
