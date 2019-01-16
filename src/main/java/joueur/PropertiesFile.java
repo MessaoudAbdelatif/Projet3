@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 public class PropertiesFile {
     private static ResourceBundle rb = ResourceBundle.getBundle("config");
 
-    public String getnbCasesRechercheplusoumoins() {
+    public static String getnbCasesRechercheplusoumoins() {
         int i;
         int j = Integer.valueOf(rb.getString("nbCasesRechercheplusoumoins"));
         String indiceSet = "";
@@ -14,7 +14,7 @@ public class PropertiesFile {
         }
         return indiceSet;
     }
-    public Boolean getModeDev(){
+    public static Boolean getModeDev(){
         Boolean getModeDev;
         if(rb.getString("modeDeveloppeur") == "true"){
             getModeDev = true;
