@@ -1,27 +1,26 @@
 package joueur;
 
-import java.io.InputStream;
-import java.util.Properties;
+import java.util.ResourceBundle;
 
 public class PropertiesFile {
-    protected Properties config;
-    protected InputStream input = PropertiesFile.class.getClassLoader().getResourceAsStream("src/main/resources/config.properties");
-
-    public PropertiesFile() throws Exception {
-        config = new Properties();
-        config.load(input);
-
-    }
+    private static ResourceBundle rb = ResourceBundle.getBundle("config");
 
     public String getnbCasesRechercheplusoumoins() {
         int i;
-        int j = Integer.valueOf(config.getProperty("nbCasesRechercheplusoumoins"));
+        int j = Integer.valueOf(rb.getString("nbCasesRechercheplusoumoins"));
         String indiceSet = "";
-        for (i = 0; i <= j; i++) {
+        for (i = 0; i < j; i++) {
             indiceSet = indiceSet + "5";
         }
         return indiceSet;
     }
-
-
+    public Boolean getModeDev(){
+        Boolean getModeDev;
+        if(rb.getString("modeDeveloppeur") == "true"){
+            getModeDev = true;
+        }else {
+            getModeDev = false;
+        }
+        return getModeDev;
+    }
 }
