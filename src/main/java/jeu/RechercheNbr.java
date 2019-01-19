@@ -2,11 +2,14 @@ package jeu;
 
 import joueur.Joueur;
 
+import static joueur.PropertiesFile.getnbTentativesPossibleRechercheplusoumoins;
+
 public class RechercheNbr implements Jeu {
     private Joueur attaquant;
     private Joueur defenseur;
     private String combinaisonSecrete;
     private String nombreRecu;
+    private int nbTentativesPossibleRechercheplusoumoins= getnbTentativesPossibleRechercheplusoumoins();
 
 
     @Override
@@ -59,7 +62,7 @@ public class RechercheNbr implements Jeu {
 
     @Override
     public void printCombinaison() {
-        System.out.println(combinaisonSecrete);
+        System.out.println("La combinaison secrète: " + combinaisonSecrete);
 
     }
 }

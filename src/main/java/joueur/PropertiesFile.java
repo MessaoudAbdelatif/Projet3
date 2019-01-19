@@ -14,13 +14,31 @@ public class PropertiesFile {
         }
         return indiceSet;
     }
-    public static Boolean getModeDev(){
-        Boolean getModeDev;
-        if(rb.getString("modeDeveloppeur") == "true"){
-            getModeDev = true;
-        }else {
-            getModeDev = false;
-        }
+
+    public static Boolean getModeDev() {
+        boolean getModeDev;
+        getModeDev = rb.getString("modeDeveloppeur").equals("true");
         return getModeDev;
     }
+
+    public static int getnbCasesMastermind() {
+        int nbCasesMastermind = Integer.valueOf(rb.getString("nbCasesMastermind"));
+        return nbCasesMastermind;
+    }
+
+    public static int getnbTentativesPossibleRechercheplusoumoins() {
+        int nbTentativesPossibleRechercheplusoumoins = Integer.valueOf(rb.getString("nbTentativesPossibleRechercheplusoumoins"));
+        return nbTentativesPossibleRechercheplusoumoins;
+    }
+
+    public static int getnbTentativesPossibleMastermind() {
+        int nbTentativesPossibleMastermind = Integer.valueOf(rb.getString("nbTentativesPossibleMastermind"));
+        return nbTentativesPossibleMastermind;
+    }
+
+    public static int getnbChiffreUtilisableMastermind() {
+        int nbChiffreUtilisableMastermind = Integer.valueOf(rb.getString("nbChiffreUtilisableMastermind"));
+        return nbChiffreUtilisableMastermind;
+    }
+
 }

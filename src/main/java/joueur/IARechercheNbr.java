@@ -5,13 +5,13 @@ import java.util.Random;
 
 import static joueur.PropertiesFile.getnbCasesRechercheplusoumoins;
 
+
 public class IARechercheNbr extends IA {
 
-    public String dernierReponse = getnbCasesRechercheplusoumoins();
-    char[] resultat = new char[dernierReponse.length()];
-    int[] borneMax = new int[dernierReponse.length()];
-    int[] borneMin = new int[dernierReponse.length()];
-
+    private String dernierReponse = getnbCasesRechercheplusoumoins();
+    private char[] resultat = new char[dernierReponse.length()];
+    private int[] borneMax = new int[dernierReponse.length()];
+    private int[] borneMin = new int[dernierReponse.length()];
 
 
     public String demanderNbrAleatoire() {

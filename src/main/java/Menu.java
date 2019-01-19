@@ -6,12 +6,30 @@ import joueur.*;
 import java.util.Scanner;
 
 public class Menu {
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
     private String selectionChoixJeu = "";
     private Jeu choixJeu;
     private Joueur joueur1;
     private Joueur joueur2;
+    private int nbTentativesPossibleRechercheplusoumoins = PropertiesFile.getnbTentativesPossibleRechercheplusoumoins();
+    private int nbTentativesPossibleMastermind = PropertiesFile.getnbTentativesPossibleMastermind();
 
+
+    private int nbTentativeLimite() {
+        int maxTentatives = 0;
+        switch (selectionChoixJeu) {
+
+            case "1":
+                maxTentatives = nbTentativesPossibleRechercheplusoumoins;
+                break;
+            case "2":
+                maxTentatives = nbTentativesPossibleMastermind;
+                break;
+
+        }
+        return maxTentatives;
+
+    }
 
     private void challenger() {
         joueur1 = new Humain();
@@ -30,18 +48,23 @@ public class Menu {
         jeu1.premierTour();
 
         int compteurTentative = 0; // compteurTentative: is loop counter
-        while (!jeu1.isFini()) {
+        while (!jeu1.isFini() && compteurTentative < nbTentativeLimite()) {
             compteurTentative++;
             jeu1.jouerTour();
 
+
         }
-        System.out.print("Bravo Combinaison secrete trouvée: ");
+        if (compteurTentative == nbTentativeLimite()) {
+            System.out.println("\nGAME OVER \nNombre de tentatives maximales atteind");
+        } else {
+            System.out.println("\nBravo");
+        }
         jeu1.printCombinaison();
 
         if (compteurTentative > 1) {
-            System.out.println("  Le jeu est fini en  " + compteurTentative + " tentatives");
+            System.out.println("Le jeu est fini en  " + compteurTentative + " tentatives");
         } else {
-            System.out.println("  Le jeu est fini en  " + compteurTentative + " tentative");
+            System.out.println("Le jeu est fini en  " + compteurTentative + " tentative");
         }
 
     }
@@ -63,17 +86,21 @@ public class Menu {
         jeu1.premierTour();
 
         int compteurTentative = 0; // compteurTentative: is loop counter
-        while (!jeu1.isFini()) {
+        while (!jeu1.isFini() && compteurTentative < nbTentativeLimite()) {
             compteurTentative++;
             jeu1.jouerTour();
 
         }
-        System.out.print("Bravo Combinaison secrete trouvée: ");
+        if (compteurTentative == nbTentativeLimite()) {
+            System.out.println("\nGAME OVER \nNombre de tentatives maximales atteind");
+        } else {
+            System.out.println("\nBravo");
+        }
         jeu1.printCombinaison();
         if (compteurTentative > 1) {
-            System.out.println("  Le jeu est fini en  " + compteurTentative + " tentatives");
+            System.out.println("Le jeu est fini en  " + compteurTentative + " tentatives");
         } else {
-            System.out.println("  Le jeu est fini en  " + compteurTentative + " tentative");
+            System.out.println("Le jeu est fini en  " + compteurTentative + " tentative");
         }
     }
 
@@ -101,49 +128,57 @@ public class Menu {
         jeu1.premierTour();
 
 
-        int compteurTentativeJoueur1 = 0; // compteurTentativeJoueur1: first  player tentatives counter
-        int compteurTentativeJoueur2 = 0; // compteurTentativeJoueur2: second player tentatives counter
+        int compteurTentative = 0; // compteurTentative
+
         boolean alternateurJoueur = false;
 
-        while (!jeu1.isFini() && !jeu2.isFini()) {
-            if (!jeu1.isFini() && !jeu2.isFini() && alternateurJoueur == false) {
-                compteurTentativeJoueur1++;
+        while (!jeu1.isFini() && !jeu2.isFini() && compteurTentative < nbTentativeLimite()) {
+            if (!jeu1.isFini() && !jeu2.isFini() && !alternateurJoueur) {
+                compteurTentative++;
                 System.out.println("JOUEUR 1");
                 jeu1.jouerTour();
 
 
                 if (jeu1.isFini()) {
-                    System.out.print("Bravo Joueur 1 Win!! Combinaison secrete trouvée: ");
+                    System.out.print("Bravo Joueur 1 Win!!");
                     jeu1.printCombinaison();
-                    if (compteurTentativeJoueur1 > 1) {
-                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur1 + " tentatives");
+                    if (compteurTentative > 1) {
+                        System.out.println("Le jeu est fini en  " + compteurTentative + " tentatives");
                     } else {
-                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur1 + " tentative");
+                        System.out.println("Le jeu est fini en  " + compteurTentative + " tentative");
                     }
                 }
 
             }
             alternateurJoueur = true;
 
-            if (!jeu2.isFini() && !jeu1.isFini() && alternateurJoueur == true) {
-                compteurTentativeJoueur2++;
+            if (!jeu2.isFini() && !jeu1.isFini() && alternateurJoueur) {
+
                 System.out.println("JOUEUR 2");
                 jeu2.jouerTour();
 
 
                 if (jeu2.isFini()) {
-                    System.out.print("Bravo Joueur 2 Win!! Combinaison secrete trouvée: ");
+                    System.out.print("Bravo Joueur 2 Win!!");
                     jeu2.printCombinaison();
 
-                    if (compteurTentativeJoueur2 > 1) {
-                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur2 + " tentatives");
+                    if (compteurTentative > 1) {
+                        System.out.println("Le jeu est fini en  " + compteurTentative + " tentatives");
                     } else {
-                        System.out.println("  Le jeu est fini en  " + compteurTentativeJoueur2 + " tentative");
+                        System.out.println("Le jeu est fini en  " + compteurTentative + " tentative");
                     }
                 }
 
             }
             alternateurJoueur = false;
+            if (compteurTentative == nbTentativeLimite()) {
+                System.out.println("\nGAME OVER \nNombre de tentatives maximales atteind");
+                System.out.println("Joueur 1: Fallait trouver :");
+                jeu1.printCombinaison();
+                System.out.println("Joueur 2: Fallait trouver :");
+                jeu2.printCombinaison();
+
+            }
         }
     }
 

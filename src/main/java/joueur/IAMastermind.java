@@ -3,12 +3,18 @@ package joueur;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+
+import static joueur.PropertiesFile.getnbCasesMastermind;
 
 public class IAMastermind extends IA {
+    private int nbCasesMastermind = getnbCasesMastermind();
     private String dernierReponse = "5555";
+    private List<String> possibilites = new ArrayList<>();
 
-    private void GenerateurPossibilitiesMastermind(){
-List<String> possibilitesMax = new ArrayList<>();
+    private List<String> GenerateurPossibilitiesMastermind() {
+        List<String> possibilitesMax = new ArrayList<>();
+        return possibilitesMax;
 
 
     }
@@ -29,6 +35,9 @@ List<String> possibilitesMax = new ArrayList<>();
 
     @Override
     public void donnerUnIndice(String indice) {
+        possibilites.stream().filter(combinaison -> {
+            return true;
+        }).collect(Collectors.toList());
 
         super.donnerUnIndice(indice);
     }
