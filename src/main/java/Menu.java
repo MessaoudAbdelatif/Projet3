@@ -54,7 +54,7 @@ public class Menu {
 
 
         }
-        if (compteurTentative == nbTentativeLimite()) {
+        if (!jeu1.isFini() && compteurTentative == nbTentativeLimite()) {
             System.out.println("\nGAME OVER \nNombre de tentatives maximales atteind");
         } else {
             System.out.println("\nBravo");
@@ -91,7 +91,7 @@ public class Menu {
             jeu1.jouerTour();
 
         }
-        if (compteurTentative == nbTentativeLimite()) {
+        if (!jeu1.isFini() && compteurTentative == nbTentativeLimite()) {
             System.out.println("\nGAME OVER \nNombre de tentatives maximales atteind");
         } else {
             System.out.println("\nBravo");
@@ -171,7 +171,7 @@ public class Menu {
 
             }
             alternateurJoueur = false;
-            if (compteurTentative == nbTentativeLimite()) {
+            if (!jeu1.isFini() && !jeu2.isFini() && compteurTentative == nbTentativeLimite()) {
                 System.out.println("\nGAME OVER \nNombre de tentatives maximales atteind");
                 System.out.println("Joueur 1: Fallait trouver :");
                 jeu1.printCombinaison();

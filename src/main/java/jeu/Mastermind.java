@@ -68,7 +68,7 @@ public class Mastermind implements Jeu {
 
     @Override
     public void printCombinaison() {
-        System.out.println(combinaisonSecrete);
+        System.out.println("La combinaison secrète: " +combinaisonSecrete);
 
     }
 }
