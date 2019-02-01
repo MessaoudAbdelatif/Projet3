@@ -32,17 +32,28 @@ public class Mastermind implements Jeu {
         nombreRecu = attaquant.demanderNbrReponse();
         nbPresent = 0;
         nbBienPlace = 0;
+        boolean[] tagBienPlace = new boolean[nombreRecu.length()];
 
 
-        for (int i = 0; i < nombreRecu.length(); i++) {
-            if (nombreRecu.charAt(i) == combinaisonSecrete.charAt(i))
+        for (int i = 0; i < combinaisonSecrete.length(); i++) {
+            if (nombreRecu.charAt(i) == combinaisonSecrete.charAt(i)) {
                 nbBienPlace++;
-            else {
-                for (int j = 0; j < combinaisonSecrete.length(); j++) {
-                    if (nombreRecu.charAt(i) == combinaisonSecrete.charAt(j)) {
-                        nbPresent++;
+                tagBienPlace[i] = true;
+            } else {
+                tagBienPlace[i] = false;
+            }
+        }
 
+        for (int i = 0; i < combinaisonSecrete.length(); i++) {
+            if (nombreRecu.charAt(i) != combinaisonSecrete.charAt(i)) {
+                int j = 0;
+                boolean tagPresent = false;
+                while (!tagPresent && j < combinaisonSecrete.length()) {
+                    if (!tagBienPlace[j] && (nombreRecu.charAt(i) == combinaisonSecrete.charAt(j))) {
+                        nbPresent++;
+                        tagPresent = true;
                     }
+                    j++;
                 }
             }
         }
@@ -68,7 +79,7 @@ public class Mastermind implements Jeu {
 
     @Override
     public void printCombinaison() {
-        System.out.println("La combinaison secrète: " +combinaisonSecrete);
+        System.out.println("La combinaison secrète: " + combinaisonSecrete);
 
     }
 }

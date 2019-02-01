@@ -61,45 +61,15 @@ public class IAMastermind extends IA {
     }
 
     @Override
-    public String generateur(){
-        List<Integer> v = new ArrayList();
-        new Random().ints(nbCasesMastermind, 0, nbChiffreUtilisableMastermind).forEach(v::add);
-        String vv="";
-        for(int i = 0; i< nbCasesMastermind ; i++){
-            vv = vv+v.get(i);
-        };
-
-
-
-
-
-/*
-
-        Collections.shuffle(nbutilisable());
-
-        List<String> vv = nbutilisable().subList(0, nbCasesMastermind);
-        String v = String.valueOf(vv);
-    return v;
-    }
-    */
-/*public String generateur() {
-        Random generateur = new Random();
-
-        String v = Integer.toString(Math.abs(generateur.nextInt()));
-        v = v.substring(0, dernierReponse.length());
-        return v;
-    }*//*
-
-    private List<String> nbutilisable(){
-        ArrayList nbUtilisable = new ArrayList();
-        for (int i = 0; i <= nbChiffreUtilisableMastermind; i++){
-            nbUtilisable.add(i);
+    public String generateur() {
+        List<Integer> randomList = new ArrayList();
+        new Random().ints(nbCasesMastermind, 0, nbChiffreUtilisableMastermind).forEach(randomList::add);
+        String generateurRandom = "";
+        for (int i = 0; i < nbCasesMastermind; i++) {
+            generateurRandom = generateurRandom + randomList.get(i);
         }
-*/
-
-   return vv;
+        return generateurRandom;
     }
-
 
 
 }
