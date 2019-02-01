@@ -7,12 +7,13 @@ public class Main {
     private static Logger logger = LogManager.getLogger(Main.class);
 
 
+
     public static void main(String[] args) {
         boolean developpeurMode = false;
 
         if ((PropertiesFile.getModeDev()) || (args.length > 0 && args[0].equals("-dev"))) {
             logger.info("mode développeur activé!");
-            developpeurMode = true;
+             developpeurMode = true;
         }
         logger.info("Lancement du Projet3");
         new Menu().choixDuJeu();

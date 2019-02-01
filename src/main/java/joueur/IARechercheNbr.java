@@ -3,6 +3,7 @@ package joueur;
 
 import java.util.Random;
 
+
 import static joueur.PropertiesFile.getnbCasesRechercheplusoumoins;
 
 
@@ -12,6 +13,7 @@ public class IARechercheNbr extends IA {
     private char[] resultat = new char[dernierReponse.length()];
     private int[] borneMax = new int[dernierReponse.length()];
     private int[] borneMin = new int[dernierReponse.length()];
+
 
 
     public String demanderNbrAleatoire() {
@@ -61,6 +63,7 @@ public class IARechercheNbr extends IA {
 
     @Override
     public void donnerUnIndice(String indice) {
+
 
         System.out.println(" Indice : " + indice);
         char[] tabIndice = indice.toCharArray();

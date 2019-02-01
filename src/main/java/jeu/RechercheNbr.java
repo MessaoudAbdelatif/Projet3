@@ -2,14 +2,11 @@ package jeu;
 
 import joueur.Joueur;
 
-import static joueur.PropertiesFile.getnbTentativesPossibleRechercheplusoumoins;
-
 public class RechercheNbr implements Jeu {
     private Joueur attaquant;
     private Joueur defenseur;
     private String combinaisonSecrete;
     private String nombreRecu;
-    private int nbTentativesPossibleRechercheplusoumoins= getnbTentativesPossibleRechercheplusoumoins();
 
 
     @Override
