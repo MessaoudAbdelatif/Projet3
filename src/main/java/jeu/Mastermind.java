@@ -49,7 +49,7 @@ public class Mastermind implements Jeu {
                 int j = 0;
                 boolean tagPresent = false;
                 while (!tagPresent && j < combinaisonSecrete.length()) {
-                    if (!tagBienPlace[j] && (nombreRecu.charAt(i) == combinaisonSecrete.charAt(j))) {
+                    if (!tagBienPlace[j] && (nombreRecu.charAt(j) == combinaisonSecrete.charAt(i))) {
                         nbPresent++;
                         tagPresent = true;
                     }
