@@ -11,7 +11,7 @@ import static joueur.PropertiesFile.getnbChiffreUtilisableMastermind;
 public class IAMastermind extends IA {
     private int nbCasesMastermind = getnbCasesMastermind();
     private int nbChiffreUtilisableMastermind = getnbChiffreUtilisableMastermind();
-    private String dernierReponse = "";
+    private String dernierReponse = dernierReponseInit();
     private ArrayList<String> allPossibilites;
 
 
@@ -33,7 +33,19 @@ public class IAMastermind extends IA {
         }
 
     }
+// Méthode permettant d'initie la 1er réponse de notre IA (optimisé selon KNUTH "1122" et s'adapte à la longeur du jeu)
+    private String dernierReponseInit() {
+        String indiceSet = "";
+        for (int i = 0; i < (nbCasesMastermind/2); i++) {
+            indiceSet = indiceSet + "1";
+        }
+        for (int j = indiceSet.length(); j < nbCasesMastermind; j++){
+            indiceSet = indiceSet + "2";
+        }
+        return indiceSet;
 
+
+    }
 
     @Override
     public String demanderNbrAleatoire() {
