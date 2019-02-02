@@ -28,6 +28,5 @@ public abstract class IA implements Joueur {
         String generateurRandom = "";
         return generateurRandom;
 
-
     }
 }

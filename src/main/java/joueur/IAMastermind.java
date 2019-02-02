@@ -57,13 +57,13 @@ public class IAMastermind extends IA {
     @Override
     public String demanderNbrReponse() {
         System.out.println("Inserez votre proposition : " + dernierReponse);
-        //TO DO SET SELON LE SIZE DE LA COMBINAISON SECRETE UNE REPONSE STYLE 1122 OU 11122 ....
-
         return dernierReponse;
     }
 
     @Override
     public void donnerUnIndice(String indice) {
+        System.out.println(" Indice : " + indice);
+        
         allPossibilites.stream().filter(combinaison -> {
             return true;
         }).collect(Collectors.toList());

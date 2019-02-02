@@ -30,6 +30,40 @@ public class Mastermind implements Jeu {
 
 
         nombreRecu = attaquant.demanderNbrReponse();
+        comparaisonLogique(nombreRecu,combinaisonSecrete);
+      /*  nbPresent = 0;
+        nbBienPlace = 0;
+        boolean[] tagBienPlace = new boolean[nombreRecu.length()];
+
+
+        for (int i = 0; i < combinaisonSecrete.length(); i++) {
+            if (nombreRecu.charAt(i) == combinaisonSecrete.charAt(i)) {
+                nbBienPlace++;
+                tagBienPlace[i] = true;
+            } else {
+                tagBienPlace[i] = false;
+            }
+        }
+
+        for (int i = 0; i < combinaisonSecrete.length(); i++) {
+            if (nombreRecu.charAt(i) != combinaisonSecrete.charAt(i)) {
+                int j = 0;
+                boolean tagPresent = false;
+                while (!tagPresent && j < combinaisonSecrete.length()) {
+                    if (!tagBienPlace[j] && (nombreRecu.charAt(j) == combinaisonSecrete.charAt(i))) {
+                        nbPresent++;
+                        tagPresent = true;
+                    }
+                    j++;
+                }
+            }
+        }
+        indice = (nbBienPlace + " Bien Placé" + " " + nbPresent + " Présent");
+
+        attaquant.donnerUnIndice(indice);*/
+
+    }
+    private void comparaisonLogique(String nombreRecu, String combinaisonSecrete){
         nbPresent = 0;
         nbBienPlace = 0;
         boolean[] tagBienPlace = new boolean[nombreRecu.length()];

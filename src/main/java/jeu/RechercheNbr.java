@@ -20,9 +20,23 @@ public class RechercheNbr implements Jeu {
     @Override
     public void jouerTour() {
 
-
         nombreRecu = attaquant.demanderNbrReponse();
+        comparaisonLogique(nombreRecu, combinaisonSecrete);
 
+/*
+        char[] tab = new char[nombreRecu.length()];
+        for (int i = 0; i < nombreRecu.length(); i++) {
+            if (this.nombreRecu.charAt(i) == this.combinaisonSecrete.charAt(i))
+                tab[i] = '=';
+            if (this.nombreRecu.charAt(i) > this.combinaisonSecrete.charAt(i))
+                tab[i] = '-';
+            if (this.nombreRecu.charAt(i) < this.combinaisonSecrete.charAt(i))
+                tab[i] = '+';
+        }
+        attaquant.donnerUnIndice(new String(tab));*/
+    }
+
+    private void comparaisonLogique(String nombreRecu, String combinaisonSecrete) {
 
         char[] tab = new char[nombreRecu.length()];
         for (int i = 0; i < nombreRecu.length(); i++) {
@@ -34,8 +48,8 @@ public class RechercheNbr implements Jeu {
                 tab[i] = '+';
         }
         attaquant.donnerUnIndice(new String(tab));
-    }
 
+    }
 
     @Override
     public boolean isFini() {
