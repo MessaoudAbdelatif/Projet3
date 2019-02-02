@@ -6,12 +6,7 @@ public class PropertiesFile {
     private static ResourceBundle rb = ResourceBundle.getBundle("config");
 
     public static String getnbCasesRechercheplusoumoins() {
-        int i;
-        int j = Integer.valueOf(rb.getString("nbCasesRechercheplusoumoins"));
-        String indiceSet = "";
-        for (i = 0; i < j; i++) {
-            indiceSet = indiceSet + "5";
-        }
+        String indiceSet = rb.getString("nbCasesRechercheplusoumoins");
         return indiceSet;
     }
 

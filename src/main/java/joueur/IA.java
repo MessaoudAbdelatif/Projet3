@@ -1,15 +1,13 @@
 package joueur;
 
-import java.util.Random;
-
 public abstract class IA implements Joueur {
-    private String dernierReponse = "5555";
+    private String dernierReponse = "";
 
 
     @Override
     public String demanderNbrAleatoire() {
-        System.out.println("Combinaison secrete initié par votre adversaire !");
-        String cs = generateur();
+        System.out.println("Combinaison secrète initié par votre adversaire !");
+        String cs = "";
         return cs;
     }
 
@@ -27,11 +25,8 @@ public abstract class IA implements Joueur {
     }
 
     public String generateur() {
-        Random generateur = new Random();
-
-        String v = Integer.toString(Math.abs(generateur.nextInt()));
-        v = v.substring(0, 4);
-        return v;
+        String generateurRandom = "";
+        return generateurRandom;
 
 
     }

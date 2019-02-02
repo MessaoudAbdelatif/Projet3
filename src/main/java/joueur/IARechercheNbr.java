@@ -1,22 +1,32 @@
 package joueur;
 
-
 import java.util.Random;
-
-
 import static joueur.PropertiesFile.getnbCasesRechercheplusoumoins;
 
 
 public class IARechercheNbr extends IA {
 
-    private String dernierReponse = getnbCasesRechercheplusoumoins();
+    private String dernierReponse = dernierReponseInit();
     private char[] resultat = new char[dernierReponse.length()];
     private int[] borneMax = new int[dernierReponse.length()];
     private int[] borneMin = new int[dernierReponse.length()];
 
 
+    private String dernierReponseInit() {
+
+        String indiceSet = "";
+        int j;
+        j = Integer.valueOf(getnbCasesRechercheplusoumoins());
+        for (int i = 0; i < j; i++) {
+            indiceSet = indiceSet + "5";
+        }
+        return indiceSet;
+
+
+    }
 
     public String demanderNbrAleatoire() {
+
         System.out.println("Combinaison secrete initié par votre adversaire !");
         String cs = generateur();
 
@@ -25,6 +35,7 @@ public class IARechercheNbr extends IA {
 
 
     public String demanderNbrReponse() {
+
         System.out.println("Insérez votre proposition : " + dernierReponse);
 
         return dernierReponse;
@@ -54,11 +65,12 @@ public class IARechercheNbr extends IA {
 
 
     public String generateur() {
-        Random generateur = new Random();
 
-        String v = Integer.toString(Math.abs(generateur.nextInt()));
-        v = v.substring(0, dernierReponse.length());
-        return v;
+        Random generateur = new Random();
+        String generateurRandom = Integer.toString(Math.abs(generateur.nextInt()));
+        generateurRandom = generateurRandom.substring(0, dernierReponse.length());
+
+        return generateurRandom;
     }
 
     @Override
@@ -68,13 +80,11 @@ public class IARechercheNbr extends IA {
         System.out.println(" Indice : " + indice);
         char[] tabIndice = indice.toCharArray();
 
-
         for (int i = 0; i < resultat.length; i++) {
-            if (dernierReponse.equals(getnbCasesRechercheplusoumoins())) {
+            if (dernierReponse.equals(dernierReponseInit())) {
                 borneMin[i] = 0;
                 borneMax[i] = 9;
             }
-
 
             switch (tabIndice[i]) {
                 case '=':
