@@ -30,7 +30,7 @@ public class Mastermind implements Jeu {
 
 
         nombreRecu = attaquant.demanderNbrReponse();
-        comparaisonLogique(nombreRecu,combinaisonSecrete);
+        comparaisonLogique(nombreRecu, combinaisonSecrete);
       /*  nbPresent = 0;
         nbBienPlace = 0;
         boolean[] tagBienPlace = new boolean[nombreRecu.length()];
@@ -63,9 +63,11 @@ public class Mastermind implements Jeu {
         attaquant.donnerUnIndice(indice);*/
 
     }
-    private void comparaisonLogique(String nombreRecu, String combinaisonSecrete){
+
+    public String comparaisonLogique(String nombreRecu, String combinaisonSecrete) {
         nbPresent = 0;
         nbBienPlace = 0;
+        String tag = String.valueOf(nbBienPlace+nbPresent);
         boolean[] tagBienPlace = new boolean[nombreRecu.length()];
 
 
@@ -95,7 +97,7 @@ public class Mastermind implements Jeu {
 
         attaquant.donnerUnIndice(indice);
 
-    }
+    return indice; }
 
 
     @Override

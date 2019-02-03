@@ -1,9 +1,12 @@
 package joueur;
 
+import jeu.Mastermind;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static joueur.PropertiesFile.getnbCasesMastermind;
 import static joueur.PropertiesFile.getnbChiffreUtilisableMastermind;
@@ -15,7 +18,8 @@ public class IAMastermind extends IA {
     private ArrayList<String> allPossibilites;
 
 
-    private void GenerateurAllPossibilitiesMastermind() {
+
+    private void generateurAllPossibilitiesMastermind() {
         allPossibilites = new ArrayList<>();
         if (nbCasesMastermind == 4) {
             for (byte i = 0; i < nbChiffreUtilisableMastermind; i++) {
@@ -33,13 +37,14 @@ public class IAMastermind extends IA {
         }
 
     }
-// Méthode permettant d'initie la 1er réponse de notre IA (optimisé selon KNUTH "1122" et s'adapte à la longeur du jeu)
+
+    // Méthode permettant d'initie la 1er réponse de notre IA (optimisé selon KNUTH "1122" et s'adapte à la longeur du jeu)
     private String dernierReponseInit() {
         String indiceSet = "";
-        for (int i = 0; i < (nbCasesMastermind/2); i++) {
+        for (int i = 0; i < (nbCasesMastermind / 2); i++) {
             indiceSet = indiceSet + "1";
         }
-        for (int j = indiceSet.length(); j < nbCasesMastermind; j++){
+        for (int j = indiceSet.length(); j < nbCasesMastermind; j++) {
             indiceSet = indiceSet + "2";
         }
         return indiceSet;
@@ -63,12 +68,15 @@ public class IAMastermind extends IA {
     @Override
     public void donnerUnIndice(String indice) {
         System.out.println(" Indice : " + indice);
-        
-        allPossibilites.stream().filter(combinaison -> {
-            return true;
-        }).collect(Collectors.toList());
+        generateurAllPossibilitiesMastermind();
+        List<String> possibilities = allPossibilites.stream()
+                .filter(x-> (new Mastermind().comparaisonLogique(x,dernierReponse)).equals(indice))
+               /* .map(x -> new Mastermind().comparaisonLogique(x, dernierReponse))
+                .filter(x -> indice.equals(x))*/
+                .collect(Collectors.toList());
+        dernierReponse = String.valueOf(possibilities.get(1));
 
-        super.donnerUnIndice(indice);
+
     }
 
     @Override
