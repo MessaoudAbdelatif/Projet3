@@ -11,6 +11,7 @@ public class Mastermind implements Jeu {
     private int nbBienPlace = 0;
     private String indice = ("");
 
+
     @Override
     public void setJoueur(Joueur attaquant, Joueur defenseur) {
         this.attaquant = attaquant;
@@ -61,13 +62,13 @@ public class Mastermind implements Jeu {
         indice = (nbBienPlace + " Bien Placé" + " " + nbPresent + " Présent");
 
         attaquant.donnerUnIndice(indice);*/
-
+        attaquant.donnerUnIndice(indice);
     }
 
     public String comparaisonLogique(String nombreRecu, String combinaisonSecrete) {
         nbPresent = 0;
         nbBienPlace = 0;
-        String tag = String.valueOf(nbBienPlace+nbPresent);
+
         boolean[] tagBienPlace = new boolean[nombreRecu.length()];
 
 
@@ -95,7 +96,8 @@ public class Mastermind implements Jeu {
         }
         indice = (nbBienPlace + " Bien Placé" + " " + nbPresent + " Présent");
 
-        attaquant.donnerUnIndice(indice);
+
+
 
     return indice; }
 
