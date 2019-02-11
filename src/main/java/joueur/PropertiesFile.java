@@ -10,7 +10,7 @@ public class PropertiesFile {
         return indiceSet;
     }
 
-    public static Boolean getModeDev() {
+    public static Boolean getModeDev() {      //TODO SET CONFIG DEV MODE
         boolean getModeDev;
         getModeDev = rb.getString("modeDeveloppeur").equals("true");
         return getModeDev;
