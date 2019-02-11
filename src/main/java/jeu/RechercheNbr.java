@@ -22,18 +22,6 @@ public class RechercheNbr implements Jeu {
 
         nombreRecu = attaquant.demanderNbrReponse();
         comparaisonLogique(nombreRecu, combinaisonSecrete);
-
-/*
-        char[] tab = new char[nombreRecu.length()];
-        for (int i = 0; i < nombreRecu.length(); i++) {
-            if (this.nombreRecu.charAt(i) == this.combinaisonSecrete.charAt(i))
-                tab[i] = '=';
-            if (this.nombreRecu.charAt(i) > this.combinaisonSecrete.charAt(i))
-                tab[i] = '-';
-            if (this.nombreRecu.charAt(i) < this.combinaisonSecrete.charAt(i))
-                tab[i] = '+';
-        }
-        attaquant.donnerUnIndice(new String(tab));*/
     }
 
     private void comparaisonLogique(String nombreRecu, String combinaisonSecrete) {
@@ -55,12 +43,8 @@ public class RechercheNbr implements Jeu {
     public boolean isFini() {
 
 
-        if (this.combinaisonSecrete.equals(nombreRecu)) {
+        return this.combinaisonSecrete.equals(nombreRecu);
 
-            return true;
-        }
-
-        return false;
     }
 
 

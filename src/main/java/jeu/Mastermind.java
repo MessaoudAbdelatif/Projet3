@@ -7,8 +7,6 @@ public class Mastermind implements Jeu {
     private Joueur defenseur;
     private String combinaisonSecrete;
     private String nombreRecu;
-    private int nbPresent = 0;
-    private int nbBienPlace = 0;
     private String indice = ("");
 
 
@@ -36,8 +34,8 @@ public class Mastermind implements Jeu {
     }
 
     public String comparaisonLogique(String nombreRecu, String combinaisonSecrete) {
-        nbPresent = 0;
-        nbBienPlace = 0;
+        int nbPresent = 0;
+        int nbBienPlace = 0;
 
         boolean[] tagBienPlace = new boolean[nombreRecu.length()];
 
@@ -73,15 +71,9 @@ public class Mastermind implements Jeu {
 
     @Override
     public boolean isFini() {
+        return combinaisonSecrete.equals(nombreRecu);
 
 
-        if (combinaisonSecrete.equals(nombreRecu)) {
-
-            return true;
-        }
-
-
-        return false;
     }
 
     @Override
