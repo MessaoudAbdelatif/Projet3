@@ -9,6 +9,7 @@ public class Menu {
     private Scanner sc = new Scanner(System.in);
     private String selectionChoixJeu = "";
     private Jeu choixJeu;
+    private int selectionChoixMode;
     private Joueur joueur1;
     private Joueur joueur2;
     private int nbTentativesPossibleRechercheplusoumoins = PropertiesFile.getnbTentativesPossibleRechercheplusoumoins();
@@ -56,8 +57,10 @@ public class Menu {
         }
         if (!jeu1.isFini() && compteurTentative == nbTentativeLimite()) {
             System.out.println("\nGAME OVER \nNombre de tentatives maximales atteind");
+
         } else {
             System.out.println("\nBravo");
+
         }
         jeu1.printCombinaison();
 
@@ -66,7 +69,7 @@ public class Menu {
         } else {
             System.out.println("Le jeu est fini en  " + compteurTentative + " tentative");
         }
-
+        choixFinDuJeu();
     }
 
 
@@ -102,6 +105,7 @@ public class Menu {
         } else {
             System.out.println("Le jeu est fini en  " + compteurTentative + " tentative");
         }
+        choixFinDuJeu();
     }
 
 
@@ -180,6 +184,7 @@ public class Menu {
 
             }
         }
+        choixFinDuJeu();
     }
 
 
@@ -196,7 +201,7 @@ public class Menu {
             selectionChoixJeu = "2";
             choixDuMode();
         } else {
-            System.out.println("Je ne trouve pas le jeu sélectionné!! \n De nouveau veuillez sélectionner le numéro associé au jeu.");
+            System.out.println("\n De nouveau veuillez sélectionner le numéro associé au jeu.");
             this.choixDuJeu();
         }
 
@@ -204,7 +209,7 @@ public class Menu {
 
     private void choixDuMode() {
         System.out.println(" 1/ Challenger. \n 2/ Defenseur. \n 3/ Duel. \n Veuillez Inserez le numéro de mode de jeu désiré: ");
-        int selectionChoixMode = sc.nextInt();
+        selectionChoixMode = sc.nextInt();
         switch (selectionChoixMode) {
             case 1:
                 this.challenger();
@@ -222,5 +227,30 @@ public class Menu {
                 break;
         }
     }
+
+    private void choixFinDuJeu() {
+        System.out.println("Que Souhaitez Vous Faire : \n 1/ Quitter. \n 2/ Rejouer. \n 3/ Revenir Au Menu Principal.");
+        Scanner sc = new Scanner(System.in);
+        String selectionChoixFinJeu = sc.nextLine();
+
+        if (selectionChoixFinJeu.equals("1") || selectionChoixFinJeu.equals("Quitter")) {
+            System.exit(0);
+        } else if ((selectionChoixFinJeu.equals("2") || selectionChoixFinJeu.equals("Rejouer"))) {
+            switch (selectionChoixMode) {
+                case 1:
+                    this.challenger();
+                    break;
+                case 2:
+                    this.defenseur();
+                    break;
+                case 3:
+                    this.duel();
+                    break;
+            }
+        } else if (selectionChoixFinJeu.equals("3") || selectionChoixFinJeu.equals("Revenir Au Menu Principal")) {
+            this.choixDuJeu();
+        }
+    }
+
 
 }
