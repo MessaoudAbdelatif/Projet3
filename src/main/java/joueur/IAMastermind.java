@@ -2,11 +2,8 @@ package joueur;
 
 import jeu.Mastermind;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 
 import static joueur.PropertiesFile.getnbCasesMastermind;
@@ -17,23 +14,44 @@ public class IAMastermind extends IA {
     private int nbChiffreUtilisableMastermind = getnbChiffreUtilisableMastermind();
     private String dernierReponse = dernierReponseInit();
     private List<String> allPossibilites;
+    private String c = "";
 
 
     public IAMastermind() {
+
         generateurAllPossibilitiesMastermind();
     }
 
     private void generateurAllPossibilitiesMastermind() {
-        allPossibilites = new ArrayList<>();
-        for (int i = 0; i < Math.pow(nbChiffreUtilisableMastermind, nbCasesMastermind); i++) {
-            String nb = Integer.toString(i);
-            while (nb.length() < nbCasesMastermind) {
-            nb = 0 + nb;
-            }
-            allPossibilites.add(nb);
-        }
 
+        for (int a = nbChiffreUtilisableMastermind; a < 10; a++) {
+            String badnb = Integer.toString(a);
+            c = c + badnb;
+
+        }
+        char[] nbNonUtilisable = c.toCharArray();
+        allPossibilites = new ArrayList<>();
+        for (int i = 0; i < Math.pow(10, nbCasesMastermind) && (allPossibilites.size() < (Math.pow(nbChiffreUtilisableMastermind, nbCasesMastermind))); i++) {
+            String nb = Integer.toString(i);
+            char[] nbChar = nb.toCharArray();
+            boolean radar = false;
+            for (int j = 0; j < nbNonUtilisable.length; j++) {
+                for (int k = 0; k < nbChar.length; k++) {
+                    if (nbNonUtilisable[j] == nbChar[k]) {
+                        radar = true;
+                    }
+                }
+            }
+
+            if (!radar) {
+                while (nb.length() < nbCasesMastermind)
+                    nb = 0 + nb;
+                allPossibilites.add(nb);
+            }
+
+        }
     }
+
 
     // Méthode permettant d'initie la 1er réponse de notre IA (optimisé selon KNUTH "1122" et s'adapte à la longeur du jeu)
     private String dernierReponseInit() {
@@ -63,15 +81,12 @@ public class IAMastermind extends IA {
     }
 
 
-
     @Override
     public void donnerUnIndice(String indice) {
         System.out.println(" Indice : " + indice);
 
         allPossibilites = allPossibilites.parallelStream()
                 .filter(x -> (new Mastermind().comparaisonLogique(dernierReponse, x)).equals(indice))
-                /* .map(x -> new Mastermind().comparaisonLogique(x, dernierReponse))
-                 .filter(x -> indice.equals(x))*/
                 .collect(Collectors.toList());
         dernierReponse = allPossibilites.get(0);
 
