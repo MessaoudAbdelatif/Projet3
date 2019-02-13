@@ -102,6 +102,7 @@ public class IAMastermind extends IA {
             generateurRandom = generateurRandom + randomList.get(i);
         }
         return generateurRandom;
+
     }
 
 

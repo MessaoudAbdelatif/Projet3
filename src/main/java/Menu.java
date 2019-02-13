@@ -234,8 +234,10 @@ public class Menu {
         String selectionChoixFinJeu = sc.nextLine();
 
         if (selectionChoixFinJeu.equals("1") || selectionChoixFinJeu.equals("Quitter")) {
+            Main.logger.info("Quitter le jeux normalement");
             System.exit(0);
         } else if ((selectionChoixFinJeu.equals("2") || selectionChoixFinJeu.equals("Rejouer"))) {
+            Main.logger.info("Rejouer Choix");
             switch (selectionChoixMode) {
                 case 1:
                     this.challenger();
@@ -248,6 +250,7 @@ public class Menu {
                     break;
             }
         } else if (selectionChoixFinJeu.equals("3") || selectionChoixFinJeu.equals("Revenir Au Menu Principal")) {
+            Main.logger.info("Retour au menu principale");
             this.choixDuJeu();
         }
     }
