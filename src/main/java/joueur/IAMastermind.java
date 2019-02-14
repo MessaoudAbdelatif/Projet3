@@ -6,8 +6,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-import static joueur.PropertiesFile.getnbCasesMastermind;
-import static joueur.PropertiesFile.getnbChiffreUtilisableMastermind;
+import static config.PropertiesFile.getnbCasesMastermind;
+import static config.PropertiesFile.getnbChiffreUtilisableMastermind;
 
 public class IAMastermind extends IA {
     private int nbCasesMastermind = getnbCasesMastermind();
@@ -23,6 +23,9 @@ public class IAMastermind extends IA {
     }
 
     private void generateurAllPossibilitiesMastermind() {
+        int maxAllPossibilities = (int) (Math.pow(10, nbCasesMastermind));
+        int dimensionnementAllPossibilities = (int) (Math.pow(nbChiffreUtilisableMastermind, nbCasesMastermind));
+
 
         for (int a = nbChiffreUtilisableMastermind; a < 10; a++) {
             String badnb = Integer.toString(a);
@@ -31,7 +34,7 @@ public class IAMastermind extends IA {
         }
         char[] nbNonUtilisable = c.toCharArray();
         allPossibilites = new ArrayList<>();
-        for (int i = 0; i < Math.pow(10, nbCasesMastermind) && (allPossibilites.size() < (Math.pow(nbChiffreUtilisableMastermind, nbCasesMastermind))); i++) {
+        for (int i = 0; i < maxAllPossibilities && allPossibilites.size() < dimensionnementAllPossibilities; i++) {
             String nb = Integer.toString(i);
             char[] nbChar = nb.toCharArray();
             boolean radar = false;

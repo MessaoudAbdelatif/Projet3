@@ -1,7 +1,7 @@
 package joueur;
 
 import java.util.Random;
-import static joueur.PropertiesFile.getnbCasesRechercheplusoumoins;
+import static config.PropertiesFile.getnbCasesRechercheplusoumoins;
 
 
 public class IARechercheNbr extends IA {

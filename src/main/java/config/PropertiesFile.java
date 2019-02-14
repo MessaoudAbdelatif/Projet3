@@ -1,4 +1,4 @@
-package joueur;
+package config;
 
 import java.util.ResourceBundle;
 

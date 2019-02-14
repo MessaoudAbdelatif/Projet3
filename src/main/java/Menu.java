@@ -1,11 +1,15 @@
+import config.PropertiesFile;
 import jeu.Jeu;
 import jeu.Mastermind;
 import jeu.RechercheNbr;
 import joueur.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
 public class Menu {
+    private static final Logger logger = LogManager.getLogger(Main.class);
     private Scanner sc = new Scanner(System.in);
     private String selectionChoixJeu = "";
     private Jeu choixJeu;
@@ -46,7 +50,13 @@ public class Menu {
 
         Jeu jeu1 = choixJeu;
         jeu1.setJoueur(joueur1, joueur2);
+
         jeu1.premierTour();
+
+        if (Main.developpeurMode) {
+            System.out.println("Mode Développeur Activé -->");
+            jeu1.printCombinaison();
+        }
 
         int compteurTentative = 0; // compteurTentative: is loop counter
         while (!jeu1.isFini() && compteurTentative < nbTentativeLimite()) {
@@ -59,7 +69,7 @@ public class Menu {
             System.out.println("\nGAME OVER \nNombre de tentatives maximales atteind");
 
         } else {
-            System.out.println("\nBravo");
+            System.out.println("\n*** !!BRAVO!! ***\n");
 
         }
         jeu1.printCombinaison();
@@ -87,6 +97,10 @@ public class Menu {
         Jeu jeu1 = choixJeu;
         jeu1.setJoueur(joueur1, joueur2);
         jeu1.premierTour();
+
+        if (Main.developpeurMode) {
+            jeu1.printCombinaison();
+        }
 
         int compteurTentative = 0; // compteurTentative: is loop counter
         while (!jeu1.isFini() && compteurTentative < nbTentativeLimite()) {
@@ -193,14 +207,17 @@ public class Menu {
         System.out.println("Bienvenue au Projet3 OpenClassRoom!  \n 1/ Recherche Combinaison Secrete +/-. \n 2/ MasterMind. \n Veuillez Selectionner un jeu: ");
         this.selectionChoixJeu = sc.nextLine();
         if (selectionChoixJeu.equals("1") || selectionChoixJeu.equals("Recherche Combinaison Secrete +/-") || selectionChoixJeu.equals("Recherche Combinaison Secrete")) {
+            logger.info("Choix du jeu Recherche Nbr +/- Activé");
             choixJeu = new RechercheNbr();
             selectionChoixJeu = "1";
             choixDuMode();
         } else if (selectionChoixJeu.equals("2") || selectionChoixJeu.equals("MasterMind")) {
+            logger.info("Choix du jeu Mastermind Activé");
             choixJeu = new Mastermind();
             selectionChoixJeu = "2";
             choixDuMode();
         } else {
+            logger.error("Choix du Jeu non prit en compte");
             System.out.println("\n De nouveau veuillez sélectionner le numéro associé au jeu.");
             this.choixDuJeu();
         }
@@ -212,16 +229,20 @@ public class Menu {
         selectionChoixMode = sc.nextInt();
         switch (selectionChoixMode) {
             case 1:
+                logger.info("Mode Challenger Activé");
                 this.challenger();
                 break;
             case 2:
+                logger.info("Mode Defenseur Activé");
                 this.defenseur();
                 break;
             case 3:
+                logger.info("Mode Duel Activé");
                 this.duel();
                 break;
 
             default:
+                logger.error("ChoixDuMode non prit en compte");
                 System.out.println("De Nouveau, Veuillez inserez un numéro de mode valide!");
                 choixDuMode();
                 break;
@@ -234,10 +255,10 @@ public class Menu {
         String selectionChoixFinJeu = sc.nextLine();
 
         if (selectionChoixFinJeu.equals("1") || selectionChoixFinJeu.equals("Quitter")) {
-            Main.logger.info("Quitter le jeux normalement");
+            logger.info("Quitter le jeux normalement");
             System.exit(0);
         } else if ((selectionChoixFinJeu.equals("2") || selectionChoixFinJeu.equals("Rejouer"))) {
-            Main.logger.info("Rejouer Choix");
+            logger.info("Rejouer Choix");
             switch (selectionChoixMode) {
                 case 1:
                     this.challenger();
@@ -250,10 +271,9 @@ public class Menu {
                     break;
             }
         } else if (selectionChoixFinJeu.equals("3") || selectionChoixFinJeu.equals("Revenir Au Menu Principal")) {
-            Main.logger.info("Retour au menu principale");
+            logger.info("Retour au menu principale");
             this.choixDuJeu();
         }
     }
-
 
 }
