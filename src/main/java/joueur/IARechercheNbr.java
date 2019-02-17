@@ -27,7 +27,7 @@ public class IARechercheNbr extends IA {
 
     public String demanderNbrAleatoire() {
 
-        System.out.println("Combinaison secrete initié par votre adversaire !");
+        System.out.println("Combinaison secrète initié !");
         String cs = generateur();
 
         return cs;
@@ -40,29 +40,6 @@ public class IARechercheNbr extends IA {
 
         return dernierReponse;
     }
-
-  /* @Override
-    public void donnerUnIndice(String indice) {
-
-        System.out.println(" Indice : " + indice);
-
-        char tabIndice[] = indice.toCharArray();
-        char resultat[] = new char[tabIndice.length];
-        for (int i = 0; i < tabIndice.length; i++) {
-            if (tabIndice[i] == '+') {
-                resultat[i] = (char) (Integer.valueOf(this.dernierReponse.charAt(i)) + 1);
-            } else if (tabIndice[i] == '-') {
-                resultat[i] = (char) (Integer.valueOf(this.dernierReponse.charAt(i)) - 1);
-
-            } else if (tabIndice[i] == '=') {
-                resultat[i] = (char) (Integer.valueOf(this.dernierReponse.charAt(i)) + 0);
-            }
-
-
-        }
-        dernierReponse = String.valueOf(resultat);
-    }*/
-
 
     public String generateur() {
 

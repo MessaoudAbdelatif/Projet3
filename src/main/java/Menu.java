@@ -109,7 +109,7 @@ public class Menu {
 
         }
         if (!jeu1.isFini() && compteurTentative == nbTentativeLimite()) {
-            System.out.println("\nGAME OVER \nNombre de tentatives maximales atteind");
+            System.out.println("\n*********\nGAME OVER\n*********\nNombre de tentatives maximales atteind");
         } else {
             System.out.println("\nBravo");
         }
@@ -125,7 +125,15 @@ public class Menu {
 
     private void duel() {
         joueur1 = new Humain();
-        joueur2 = new Humain();
+        switch (selectionChoixJeu) {
+            case "1":
+                joueur2 = new IARechercheNbr();
+                break;
+            case "2":
+                joueur2 = new IAMastermind();
+                break;
+        }
+
         Jeu jeu1 = choixJeu;
         Jeu jeu2 = choixJeu;
         switch (selectionChoixJeu) {
@@ -138,11 +146,11 @@ public class Menu {
         }
 
         jeu1.setJoueur(joueur1, joueur2);
-        jeu2.setJoueur(joueur1, joueur2);
+        jeu2.setJoueur(joueur2, joueur1);
 
         System.out.println("JOUEUR 1");
         jeu2.premierTour();
-        System.out.println("JOUEUR 2");
+        System.out.println("JOUEUR 2 (Le RoBoT) :");
         jeu1.premierTour();
 
 
@@ -172,12 +180,12 @@ public class Menu {
 
             if (!jeu2.isFini() && !jeu1.isFini() && alternateurJoueur) {
 
-                System.out.println("JOUEUR 2");
+                System.out.println("JOUEUR 2 (Le RoBoT)");
                 jeu2.jouerTour();
 
 
                 if (jeu2.isFini()) {
-                    System.out.print("Bravo Joueur 2 Win!!");
+                    System.out.print("Bravo Joueur 2 (Le RoBoT) Win!!");
                     jeu2.printCombinaison();
 
                     if (compteurTentative > 1) {
@@ -190,10 +198,10 @@ public class Menu {
             }
             alternateurJoueur = false;
             if (!jeu1.isFini() && !jeu2.isFini() && compteurTentative == nbTentativeLimite()) {
-                System.out.println("\nGAME OVER \nNombre de tentatives maximales atteind");
+                System.out.println("\n*********\nGAME OVER\n*********\nNombre de tentatives maximales atteind");
                 System.out.println("Joueur 1: Fallait trouver :");
                 jeu1.printCombinaison();
-                System.out.println("Joueur 2: Fallait trouver :");
+                System.out.println("Joueur 2 (Le RoBoT): Fallait trouver :");
                 jeu2.printCombinaison();
 
             }
@@ -204,7 +212,7 @@ public class Menu {
 
     public void choixDuJeu() {
 
-        System.out.println("Bienvenue au Projet3 OpenClassRoom!  \n 1/ Recherche Combinaison Secrete +/-. \n 2/ MasterMind. \n Veuillez Selectionner un jeu: ");
+        System.out.println("\n************************************************ \n    Bienvenue au Projet3 <OpenClassRoom!> \n************************************************ \n \n 1/ Recherche Combinaison Secrète +/-. \n 2/ MasterMind. \n \n Veuillez Selectionner un jeu: \n");
         this.selectionChoixJeu = sc.nextLine();
         if (selectionChoixJeu.equals("1") || selectionChoixJeu.equals("Recherche Combinaison Secrete +/-") || selectionChoixJeu.equals("Recherche Combinaison Secrete")) {
             logger.info("Choix du jeu Recherche Nbr +/- Activé");
@@ -225,7 +233,7 @@ public class Menu {
     }
 
     private void choixDuMode() {
-        System.out.println(" 1/ Challenger. \n 2/ Defenseur. \n 3/ Duel. \n Veuillez Inserez le numéro de mode de jeu désiré: ");
+        System.out.println("\n************************ \n Mode De Jeu ?\n************************ \n 1/ Challenger. \n 2/ Défenseur. \n 3/ Duel. \n Veuillez insérez le numéro de mode de jeu désiré: ");
         selectionChoixMode = sc.nextInt();
         switch (selectionChoixMode) {
             case 1:
@@ -233,7 +241,7 @@ public class Menu {
                 this.challenger();
                 break;
             case 2:
-                logger.info("Mode Defenseur Activé");
+                logger.info("Mode Défenseur Activé");
                 this.defenseur();
                 break;
             case 3:
@@ -243,14 +251,14 @@ public class Menu {
 
             default:
                 logger.error("ChoixDuMode non prit en compte");
-                System.out.println("De Nouveau, Veuillez inserez un numéro de mode valide!");
+                System.out.println("De Nouveau, Veuillez insérez un numéro de mode valide!");
                 choixDuMode();
                 break;
         }
     }
 
     private void choixFinDuJeu() {
-        System.out.println("Que Souhaitez Vous Faire : \n 1/ Quitter. \n 2/ Rejouer. \n 3/ Revenir Au Menu Principal.");
+        System.out.println("**********************\n 1/ Quitter. \n 2/ Rejouer. \n 3/ Revenir Au Menu Principal.\nQue Souhaitez Vous: ");
         Scanner sc = new Scanner(System.in);
         String selectionChoixFinJeu = sc.nextLine();
 

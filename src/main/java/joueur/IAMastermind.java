@@ -23,7 +23,7 @@ public class IAMastermind extends IA {
     }
 
     private void generateurAllPossibilitiesMastermind() {
-        int maxAllPossibilities = (int) (Math.pow(10, nbCasesMastermind));
+        int maxAllPossibilities = (int) (Math.pow(10, nbCasesMastermind));    // 10 ici représente le nombre maximal de (couleurs ou nombres) indiqué dans l'énoncé du projet.
         int dimensionnementAllPossibilities = (int) (Math.pow(nbChiffreUtilisableMastermind, nbCasesMastermind));
 
 
@@ -57,6 +57,7 @@ public class IAMastermind extends IA {
 
 
     // Méthode permettant d'initie la 1er réponse de notre IA (optimisé selon KNUTH "1122" et s'adapte à la longeur du jeu)
+
     private String dernierReponseInit() {
         String indiceSet = "";
         for (int i = 0; i < (nbCasesMastermind / 2); i++) {
@@ -72,14 +73,14 @@ public class IAMastermind extends IA {
 
     @Override
     public String demanderNbrAleatoire() {
-        System.out.println("Combinaison secrete initié par votre adversaire !");
+        System.out.println("Combinaison secrète initié !");
         String cs = generateur();
         return cs;
     }
 
     @Override
     public String demanderNbrReponse() {
-        System.out.println("Inserez votre proposition : " + dernierReponse);
+        System.out.println("Insérez votre proposition : " + dernierReponse);
         return dernierReponse;
     }
 

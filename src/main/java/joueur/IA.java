@@ -6,14 +6,14 @@ public abstract class IA implements Joueur {
 
     @Override
     public String demanderNbrAleatoire() {
-        System.out.println("Combinaison secrète initié par votre adversaire !");
+        System.out.println("Combinaison secrète initié !");
         String cs = "";
         return cs;
     }
 
     @Override
     public String demanderNbrReponse() {
-        System.out.println("Inserez votre proposition : " + dernierReponse);
+        System.out.println("Insérez votre proposition : " + dernierReponse);
 
         return dernierReponse;
 
