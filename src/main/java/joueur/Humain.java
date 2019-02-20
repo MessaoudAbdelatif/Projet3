@@ -9,7 +9,7 @@ public class Humain implements Joueur {
     @Override
     public String demanderNbrAleatoire() {
 
-        System.out.println("Veuillez Inserez une combinaison secrete: ");
+        System.out.println("Veuillez Insérez une combinaison secrète: ");
         String cs = sc.nextLine();
 
         return cs;
@@ -18,7 +18,7 @@ public class Humain implements Joueur {
     @Override
     public String demanderNbrReponse() {
 
-        System.out.println("Inserez votre proposition : ");
+        System.out.println("Insérez votre proposition : ");
         String css = sc.nextLine();
 
         return css;
@@ -26,7 +26,7 @@ public class Humain implements Joueur {
 
     @Override
     public void donnerUnIndice(String indice) {
-        System.out.println(" Indice : " + indice);
+        System.out.println("\n Indice : " + indice);
 
 
     }

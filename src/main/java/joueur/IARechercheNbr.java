@@ -54,7 +54,7 @@ public class IARechercheNbr extends IA {
     public void donnerUnIndice(String indice) {
 
 
-        System.out.println(" Indice : " + indice);
+        System.out.println("\n Indice : " + indice);
         char[] tabIndice = indice.toCharArray();
 
         for (int i = 0; i < resultat.length; i++) {

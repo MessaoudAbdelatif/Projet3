@@ -87,7 +87,7 @@ public class IAMastermind extends IA {
 
     @Override
     public void donnerUnIndice(String indice) {
-        System.out.println(" Indice : " + indice);
+        System.out.println("\n Indice : " + indice);
 
         allPossibilites = allPossibilites.parallelStream()
                 .filter(x -> (new Mastermind().comparaisonLogique(dernierReponse, x)).equals(indice))
