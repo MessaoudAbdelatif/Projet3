@@ -70,19 +70,12 @@ public class IAMastermind extends IA {
 
 
     }
-
-    @Override
-    public String demanderNbrAleatoire() {
-        System.out.println("Combinaison secrète initié !");
-        String cs = generateur();
-        return cs;
-    }
-
     @Override
     public String demanderNbrReponse() {
         System.out.println("Insérez votre proposition : " + dernierReponse);
         return dernierReponse;
     }
+
 
 
     @Override

@@ -18,7 +18,7 @@
                 </configuration>
             </plugin>
 
-            <!--JAR
+            <!--JAR -->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -32,14 +32,13 @@
                     </archive>
                 </configuration>
             </plugin>
-            JAR -->
+
             <!--JAR2 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <archive>
-                        <!-- Création du Manifest pour la définition de la classe Main -->
                         <manifest>
                             <mainClass>Main</mainClass>
                         </manifest>
@@ -48,7 +47,7 @@
             </plugin>
             <!--JAR2 -->
 
-            <!-- Read Config.Properties -->
+            <!-- Read Config.Properties
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
@@ -67,7 +66,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Read Config.Properties -->
+            Read Config.Properties -->
         </plugins>
     </build>
     <dependencies>

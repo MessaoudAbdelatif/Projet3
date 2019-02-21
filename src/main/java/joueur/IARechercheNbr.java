@@ -1,6 +1,7 @@
 package joueur;
 
 import java.util.Random;
+
 import static config.PropertiesFile.getnbCasesRechercheplusoumoins;
 
 
@@ -25,15 +26,7 @@ public class IARechercheNbr extends IA {
 
     }
 
-    public String demanderNbrAleatoire() {
-
-        System.out.println("Combinaison secrète initié !");
-        String cs = generateur();
-
-        return cs;
-    }
-
-
+    @Override
     public String demanderNbrReponse() {
 
         System.out.println("Insérez votre proposition : " + dernierReponse);
@@ -41,6 +34,7 @@ public class IARechercheNbr extends IA {
         return dernierReponse;
     }
 
+    @Override
     public String generateur() {
 
         Random generateur = new Random();
